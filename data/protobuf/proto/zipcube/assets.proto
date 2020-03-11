@@ -1,0 +1,520 @@
+syntax = "proto3";
+option php_namespace = "App\\Types";
+option php_metadata_namespace = "ProtobufMeta";
+
+import "zipcube/generics.proto";
+
+package zipcube;
+
+/* service Test { */
+/*   rpc Test (Asset) returns (Asset); */
+/* } */
+
+message Asset {
+  Id id = 1;
+  string name = 2;
+  string description = 3;
+  Location location = 4;
+  Currency currency = 5;
+  ProductContext context = 6;
+  Area area = 7;
+  repeated Usage usages = 8;
+  repeated ImageEdge images = 9;
+  oneof details {
+    GroupDetails groupDetails = 10;
+    VenueDetails venueDetails = 11;
+    SpaceDetails spaceDetails = 12;
+    TableDetails tableDetails = 13;
+  }
+}
+
+message VenueDetails {
+  Id venueTypeId = 1;
+}
+
+message SpaceDetails {
+  repeated AssetStyle styles = 1;
+}
+
+message TableDetails { }
+
+message GroupDetails { }
+
+message Usage {
+  string name = 1;
+  ProductCategory category = 2;
+  string description = 3;
+  ProductContext context = 4;
+  repeated Product products = 5;
+}
+
+message Product {
+  Id id = 1;
+  string name = 2;
+  CurrencyAmount unitPrice = 3;
+  ProductContext context = 4;
+  TimeUnit unit = 5;
+  PriceCoverage coverage = 6;
+  string description = 7;
+  repeated ProductItem includes = 8;
+  ProductBookingParameters parameters = 9;
+  bool perPerson = 10;
+  int32 stock = 11;
+}
+
+message ProductBookingParameters {
+  BookingConstraints constraints = 1;
+  CurrencyAmount depositAmount = 2;
+  float depositPercent = 3;
+}
+
+message ProductContext {
+  string website = 1;
+  ProductPriceSchedule schedule = 2;
+  repeated AssetConfiguration configurations = 3;
+  repeated AssetAmenityEdge amenities = 4;
+  repeated TagEdge tags = 5;
+  repeated Menu menus = 6;
+}
+
+message AssetConfiguration {
+  Configuration kind = 1;
+  int32 maxPax = 2;
+}
+
+message AssetAmenityEdge {
+  Id amenityId = 1;
+  CurrencyAmount price = 2;
+  string note = 3;
+  bool suppressed = 4;
+  string description = 5;
+}
+
+message TagEdge {
+  Id tagId = 1;
+  bool suppressed = 2;
+}
+
+message Amenity {
+  Id id = 1;
+}
+
+message ProductItem {
+  string description = 1;
+  int32 orderIndex = 2;
+}
+
+message ProductPriceSchedule {
+  repeated DailyHours days = 1;
+  repeated int32 weeks = 2;
+  repeated Month months = 3;
+  Period period = 4;
+}
+
+message DailyHours {
+  Day day = 1;
+  repeated DaySpan spans = 2;
+}
+
+message Period {
+  DateTime start = 1;
+  DateTime end = 2;
+}
+
+message DateTime {
+  string date = 1;
+  int32 time = 2;
+}
+
+message BookingConstraints {
+  PeopleBookingConstraints guests = 1;
+  TimeBookingConstraints duration = 2;
+  SpendBookingConstraints spend = 3;
+}
+
+message SpendBookingConstraints {
+  CurrencyAmount minSpendAmount = 1;
+}
+
+message TimeBookingConstraints {
+  int32 minDuration = 1;
+  int32 maxDuration = 2;
+}
+
+message PeopleBookingConstraints {
+  int32 minPax = 1;
+  int32 maxPax = 2;
+}
+
+message AssetIdMap {
+  Id id = 1;
+  Id humanRef = 2;
+}
+
+message AssetI_AssetType {
+  Id assetId = 1;
+  AssetType type = 2;
+}
+
+message AssetI_TagI {
+  Id assetId = 1;
+  Id tagId = 2;
+}
+
+message AssetNesting {
+  Id assetId = 1;
+  Container container = 2;
+  repeated Layout layouts = 3;
+}
+
+message Container {
+  Id assetId = 1;
+  Id layoutId = 2;
+}
+
+message Layout {
+  Id id = 1;
+  repeated Id children = 2;
+}
+
+message Location {
+  Address address = 1;
+  LatLng coords = 2;
+  repeated NearbyPlace nearbyPlaces = 3;
+  string specialInstructions = 4;
+}
+
+message Address {
+  string formattedAddress = 1;
+  string streetNumber = 2;
+  string street = 3;
+  string country = 4;
+  string countryCode = 5;
+  string city = 6;
+  string town = 7;
+  string county = 8;
+  string postcode = 9;
+  string extra = 10;
+  string placeId = 11;
+  string autocomplete = 12;
+}
+
+message LatLng {
+  float lat = 1;
+  float lng = 2;
+}
+
+message NearbyPlace {
+  string name = 1;
+  Length distance = 2;
+  repeated NearbyPlaceType types = 3;
+}
+
+message Length {
+  float value = 1;
+  LengthUnit unit = 2;
+}
+
+message UserClaims {
+  UserClaim user = 1;
+  UserClaim actor = 2;
+}
+
+message UserClaim {
+  Id id = 1;
+  repeated UserRole roles = 2;
+}
+
+message Asset_UserClaims {
+  Asset asset = 1;
+  UserClaims userClaims = 2;
+}
+
+message AssetI_UserI {
+  Id assetId = 1;
+  Id userId = 2;
+}
+
+message AssetI_UserI_Permissions {
+  Id assetId = 1;
+  Id userId = 2;
+  AssetPermissions permissions = 3;
+}
+
+message DaySpan {
+  int32 start = 1;
+  int32 end = 2;
+}
+
+message AssetPermissions {
+  bool canApprove = 1;
+  bool canUpdate = 2;
+  bool canNest = 3;
+  bool getsNotified = 4;
+  bool canDelete = 5;
+}
+
+message Menu {
+  string description = 1;
+  repeated MenuGroup groups = 2;
+  repeated MenuPriceOption priceOptions = 3;
+}
+
+message MenuGroup {
+  string description = 1;
+  int32 orderIndex = 2;
+  repeated MenuItem items = 3;
+}
+
+message MenuItem {
+  string description = 1;
+  int32 orderIndex = 2;
+  repeated MenuPriceOption priceOptions = 3;
+}
+
+message MenuPriceOption {
+  string kind = 1;
+  string description = 2;
+  CurrencyAmount price = 3;
+}
+
+message CurrencyAmount {
+  float value = 1;
+  Currency currency = 2;
+}
+
+message Area {
+  float value = 1;
+  AreaUnit unit = 2;
+}
+
+message ImageEdge {
+  Id imageId = 1;
+  int32 orderIndex = 2;
+  string description = 3;
+}
+
+message ImageUpload {
+  Id id = 1;
+  bytes file = 2;
+  ImageType type = 3;
+  ImageSize size = 4;
+}
+
+message Image {
+  Id id = 1;
+  ImageType type = 2;
+  repeated ImageUrl imageUrls = 3;
+}
+
+message ImageUrl {
+  string url = 1;
+  ImageSize imageSize = 2;
+}
+
+message TagCatalogItem {
+  Tag tag = 1;
+  int32 orderIndex = 2;
+  ProductCategory productCategory = 3;
+}
+
+message Tag {
+  Id id = 1;
+  string description = 2;
+}
+
+message ImposingAssets {
+  Asset template = 1;
+  repeated Asset targets = 2;
+}
+
+/* Enums */
+
+enum Day {
+  NODAY = 0;
+  SUNDAY = 1;
+  MONDAY = 2;
+  TUESDAY = 3;
+  WEDNESDAY = 4;
+  THURSDAY = 5;
+  FRIDAY = 6;
+  SATURDAY = 7;
+}
+
+enum NearbyPlaceType {
+  NONEARBYPLACETYPE = 0;
+  TRAIN_STATION = 1;
+  SUBWAY_STATION = 2;
+}
+
+enum LengthUnit {
+  NOLENGTHUNIT = 0;
+  METER = 1;
+  FEET = 2;
+}
+
+enum AreaUnit {
+  NOAREAUNIT = 0;
+  M2 = 1;
+  FT2 = 2;
+}
+
+enum AssetType {
+  NOASSETTYPE = 0;
+  GROUP = 1;
+  VENUE = 2;
+  ROOM = 3;
+}
+
+enum ProductCategory {
+  NOPRODUCTCATEGORY = 0;
+  MEETING = 1;
+  OFFICE = 2;
+  PARTY = 3;
+  WEDDING = 4;
+  DINING = 5;
+  HOTDESK = 6;
+  DEDICATEDDESK = 7;
+}
+
+enum Month {
+  NOMONTH = 0;
+  JANUARY = 1;
+  FEBRUARY = 2;
+  MARCH = 3;
+  APRIL = 4;
+  MAY = 5;
+  JUNE = 6;
+  JULY = 7;
+  AUGUST = 8;
+  SEPTEMBER = 9;
+  OCTOBER = 10;
+  NOVEMBER = 11;
+  DECEMBER = 12;
+}
+
+enum TimeUnit {
+  NOTIMEUNIT = 0;
+  PERIOD = 1;
+  YEAR = 2;
+  MONTH = 3;
+  WEEK = 4;
+  DAY = 5;
+  SPAN = 6;
+  TOSPANEND = 7;
+  HOUR = 8;
+}
+
+enum PriceCoverage {
+  NOPRICECOVERAGE = 0;
+  ALLIN = 1;
+  MINIMUMSPEND = 2;
+  FLATRATE = 3;
+}
+
+enum UserRole {
+  LOGGEDIN = 0;
+  ADMIN = 1;
+  VENUEOWNER = 2;
+}
+
+enum Configuration {
+  NOCONFIGURATION = 0;
+  SEATED = 1;
+  RECEPTION = 2;
+  BOARDROOM = 3;
+  CLASSROOM = 4;
+  BANQUET = 5;
+  THEATRE = 6;
+  U_SHAPED = 7;
+  CABARET = 8;
+}
+
+enum Currency {
+  NOCURRENCY = 0;
+  GBP = 1;
+  EUR = 2;
+  USD = 3;
+  AMD = 4;
+  BZD = 5;
+  CAD = 6;
+  CHF = 7;
+  CNY = 8;
+  IDR = 9;
+  ILS = 10;
+  INR = 11;
+  PKR = 12;
+  PLN = 13;
+  SEK = 14;
+  ZAR = 15;
+}
+
+enum ImageType {
+  NOIMAGETYPE = 0;
+  ASSET = 1;
+  FOOD = 2;
+  SITEIMAGE = 3;
+}
+
+enum ImageSize {
+  RAW = 0;
+  SMALL = 1;
+  MEDIUM = 2;
+  LARGE = 3;
+  HUGE = 4;
+  BANNER = 5;
+}
+
+enum AssetStyle {
+  NOSTYLE = 0;
+  QUIRKY = 1;
+  AFFORDABLE = 2;
+  CORPORATE = 3;
+  LUXURY = 4;
+}
+
+/* Collections */
+
+message CString {
+  repeated string collection = 1;
+}
+
+message CAsset {
+  repeated Asset collection = 1;
+}
+
+message CAssetIdMap {
+  repeated AssetIdMap collection = 1;
+}
+
+message CMenu {
+  repeated Menu collection = 1;
+}
+
+message CProduct {
+  repeated Product collection = 1;
+}
+
+message CDailyHours {
+  repeated DailyHours collection = 1;
+}
+
+message CAssetI_UserI_Permissions {
+  repeated AssetI_UserI_Permissions collection = 1;
+}
+
+message CAssetI_AssetType {
+  repeated AssetI_AssetType collection = 1;
+}
+
+message CAssetI_TagI {
+  repeated CAssetI_TagI collection = 1;
+}
+
+message CImageUpload {
+  repeated ImageUpload collection = 1;
+}
+
+message CTagCatalogItem {
+  repeated TagCatalogItem collection = 1;
+}

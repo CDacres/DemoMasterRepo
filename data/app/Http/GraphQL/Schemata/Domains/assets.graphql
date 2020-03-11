@@ -1,0 +1,614 @@
+extend type Mutation @middleware(checks: ["is_logged_in_graphql"]) {
+  upsertVenue(input: VenueInput!): MutationResult @inputToType(type: "App\\Types\\GQL\\ListingsVenueInput")
+  upsertSpace(input: SpaceInput!): MutationResult @inputToType(type: "App\\Types\\GQL\\ListingsSpaceInput")
+  patchAddress(input: patchAddressInput!): MutationResult @inputToType(type: "App\\Types\\GQL\\PatchAddressInput")
+}
+
+extend type Query {
+  listingsVenues(args: ListingsVenuesArgs): [ListingsVenue] @inputToType(type: "App\\Types\\GQL\\ListingsVenuesArgs")
+}
+
+extend type Query {
+  calculatedAssets(args: CalculatedAssetsArgs): [CalculatedAsset] @inputToType(type: "App\\Types\\GQL\\CalculatedAssetsArgs")
+}
+
+input AssetIdMapFromHumanRefsArgs {
+  refs: [Ref!]
+}
+
+input ListingsVenuesArgs {
+  humanRef: Ref
+}
+
+type AssetIdMap {
+  id: Ref
+  humanRef: Ref
+}
+
+type VenueDetails {
+  venueTypeId: Ref
+}
+
+type SpaceDetails {
+  styles: [AssetStyle!]
+}
+
+input VenueDetailsInput {
+  venueTypeId: Ref
+}
+
+input SpaceDetailsInput {
+  styles: [AssetStyle!]
+}
+
+type ListingsVenue {
+  asset: ListingsAsset!
+  details: VenueDetails!
+  spaces: [ListingsSpace!]!
+}
+
+type ListingsSpace {
+  asset: ListingsAsset
+  details: SpaceDetails
+  tableCount: Int
+}
+
+input VenueInput {
+  asset: ListingsAssetInput
+  details: VenueDetailsInput
+}
+
+input SpaceInput {
+  asset: ListingsAssetInput
+  details: SpaceDetailsInput
+  parentId: Ref!
+  tableCount: Int
+}
+
+type ListingsAsset {
+  id: Ref!
+  name: String!
+  description: String
+  location: Location
+  currency: Currency
+  context: ProductContext
+  area: Area
+  usages: [Usage!]
+  images: [AssetImageEdge!]
+}
+
+type Usage {
+  name: String
+  category: ProductCategory!
+  description: String
+  context: ProductContext
+  products: [Product!]
+}
+
+type Product {
+  id: Ref!
+  name: String
+  unitPrice: CurrencyAmount
+  perPerson: Boolean!
+  unit: TimeUnit!
+  coverage: PriceCoverage!
+  description: String
+  includes: [ProductItem!]
+  parameters: ProductBookingParameters
+  context: ProductContext
+}
+
+type ProductBookingParameters {
+  constraints: BookingConstraints
+  depositAmount: CurrencyAmount
+  depositPercent: Float
+}
+
+type ProductContext {
+  website: String
+  schedule: ProductPriceSchedule
+  configurations: [AssetConfiguration!]
+  amenities: [AssetAmenityEdge!]
+  tags: [TagEdge!]
+  menus: [Menu!]
+}
+
+type TagEdge {
+  tag: Tag
+    @field(resolver: "App\\Http\\GraphQL\\Types\\Tag")
+  suppressed: Boolean
+}
+
+input ListingsAssetInput {
+  id: Ref!
+  name: String
+  description: String
+  location: LocationInput
+  currency: Currency
+  context: ProductContextInput
+  area: AreaInput
+  usages: [UsageInput!]
+  images: [AssetImageEdgeInput!]
+}
+
+input UsageInput {
+  name: String
+  category: ProductCategory!
+  description: String
+  context: ProductContextInput
+  products: [ProductInput!]
+}
+
+input ProductInput {
+  id: Ref!
+  name: String
+  unitPrice: CurrencyAmountInput
+  perPerson: Boolean!
+  unit: TimeUnit!
+  coverage: PriceCoverage!
+  description: String
+  includes: [ProductItemInput!]
+  parameters: ProductBookingParametersInput
+  context: ProductContextInput
+}
+
+input ProductBookingParametersInput {
+  constraints: BookingConstraintsInput
+  depositAmount: CurrencyAmountInput
+  depositPercent: Float
+}
+
+input ProductContextInput {
+  website: String
+  schedule: ProductPriceScheduleInput
+  configurations: [AssetConfigurationInput!]
+  amenities: [AssetAmenityEdgeInput!]
+  tags: [TagEdgeInput!]
+  menus: [MenuInput!]
+}
+
+type WeeklyHours {
+  days: [DailyHours!]
+}
+
+type WeeklyHoursInput {
+  days: [DailyHours!]
+}
+
+type Menu {
+  description: String!
+  priceOptions: [MenuPriceOptions!]
+  groups: [MenuGroup!]
+}
+
+input MenuInput {
+  description: String!
+  priceOptions: [MenuPriceOptionsInput!]
+  groups: [MenuGroupInput!]
+}
+
+type MenuPriceOptions {
+  kind: String
+  description: String
+  price: CurrencyAmount
+}
+
+input MenuPriceOptionsInput {
+  kind: String
+  description: String
+  price: CurrencyAmountInput
+}
+
+type MenuGroup {
+  description: String
+  orderIndex: Int
+  items: [MenuItem!]
+}
+
+input MenuGroupInput {
+  description: String
+  orderIndex: Int
+  items: [MenuItemInput!]
+}
+
+type MenuItem {
+  description: String!
+  orderIndex: Int
+  priceOptions: [MenuPriceOptions!]
+}
+
+input MenuItemInput {
+  description: String!
+  orderIndex: Int
+  priceOptions: [MenuPriceOptionsInput!]
+}
+
+type DailyHours {
+  day: DayOfWeek
+  spans: [DaySpan!]
+}
+
+input DailyHoursInput {
+  day: DayOfWeek
+  spans: [DaySpanInput!]
+}
+
+"A span of time within a 24 hour day. If it exceeds 1440, that means it ends the following day."
+type DaySpan {
+  start: Int!
+  end: Int!
+}
+
+"A span of time within a 24 hour day. Use it with care (by exceeding 1440) to span over into the following day."
+input DaySpanInput {
+  start: Int!
+  end: Int!
+}
+
+type ProductItem {
+  description: String
+  orderIndex: Int
+}
+
+input ProductItemInput {
+  description: String
+  orderIndex: Int
+}
+
+type AssetConfiguration {
+  kind: ConfigurationKind!
+  maxPax: Int!
+}
+
+input AssetConfigurationInput {
+  kind: ConfigurationKind!
+  maxPax: Int!
+}
+
+type BookingConstraints {
+  guests: PeopleBookingConstraints
+  duration: TimeBookingConstraints
+  spend: SpendBookingConstraints
+}
+
+type PeopleBookingConstraints {
+  minPax: Int
+  maxPax: Int
+}
+
+type SpendBookingConstraints {
+  minSpendAmount: CurrencyAmount
+}
+
+type TimeBookingConstraints {
+  minDuration: Int
+  maxDuration: Int
+}
+
+input BookingConstraintsInput {
+  guests: PeopleBookingConstraintsInput
+  duration: TimeBookingConstraintsInput
+  spend: SpendBookingConstraintsInput
+}
+
+input PeopleBookingConstraintsInput {
+  minPax: Int
+  maxPax: Int
+}
+
+input SpendBookingConstraintsInput {
+  minSpendAmount: CurrencyAmountInput
+}
+
+input TimeBookingConstraintsInput {
+  minDuration: Int
+  maxDuration: Int
+}
+
+type ProductPriceSchedule {
+  days: [DailyHours!]
+  "Array of available week of year numbers starting from 1"
+  weeks: [Int!]
+  months: [Month!]
+  # period: Period
+}
+
+input ProductPriceScheduleInput {
+  days: [DailyHoursInput!]
+  "Array of available week of year numbers starting from 1"
+  weeks: [Int!]
+  months: [Month!]
+  # period: PeriodInput
+}
+
+# type Period {
+#   start: DateTime!
+#   end: DateTime!
+# }
+
+# input PeriodInput {
+#   start: DateTimeInput!
+#   end: DateTimeInput!
+# }
+
+# type DateTime {
+#   date: Date!
+#   time: Int!
+# }
+
+# input DateTimeInput {
+#   date: Date!
+#   time: Int!
+# }
+
+type CurrencyAmount {
+  currency: Currency
+  value: Float!
+}
+
+input CurrencyAmountInput {
+  currency: Currency
+  value: Float!
+}
+
+"Postal address, Mercator coords, Nearby Places & Special Instructions"
+type Location {
+  address: Address
+  coords: LatLng
+  nearbyPlaces: [NearbyPlace!]
+  specialInstructions: String
+}
+
+input LocationInput {
+  address: AddressInput
+  coords: LatLngInput
+  nearbyPlaces: [NearbyPlaceInput!]
+  specialInstructions: String
+}
+
+type Address {
+  formattedAddress: String
+  streetNumber: String
+  street: String
+  country: String
+  countryCode: String
+  city: String
+  town: String
+  county: String
+  postcode: String
+  extra: String
+  "Google PlaceId"
+  placeId: String
+  autocomplete: String
+}
+
+input AddressInput {
+  formattedAddress: String
+  streetNumber: String
+  street: String
+  "2 character country code (per Google)"
+  countryCode: String
+  city: String
+  town: String
+  county: String
+  postcode: String
+  "Google PlaceId"
+  placeId: String
+  "This should be in the language of the country: eg - Italy should be Italia"
+  country: String
+  extra: String
+  autocomplete: String
+}
+
+input patchAddressInput {
+  id: Ref!
+  address: AddressInput!
+}
+
+type LatLng {
+  lat: Float!
+  lng: Float!
+}
+
+input LatLngInput {
+  lat: Float!
+  lng: Float!
+}
+
+type AssetAmenityEdge {
+  amenity: Amenity!
+    @field(resolver: "App\\Http\\GraphQL\\Types\\Amenity")
+  price: CurrencyAmount
+  note: String
+  suppressed: Boolean
+}
+
+input AssetAmenityEdgeInput {
+  amenityId: Ref!
+  price: CurrencyAmountInput
+  note: String
+  suppressed: Boolean
+}
+
+input TagEdgeInput {
+  tagId: Ref!
+  suppressed: Boolean
+}
+
+type AssetImageEdge {
+  image: Image
+    @field(resolver: "App\\Http\\GraphQL\\Types\\Image")
+  orderIndex: Int
+  description: String
+}
+
+input AssetImageEdgeInput {
+  imageId: Ref!
+  orderIndex: Int!
+  description: String
+  imageType: ImageType
+}
+
+"Important nearby place "
+type NearbyPlace {
+  name: String!
+  distance: Length!
+  types: [NearbyPlaceType!]
+}
+
+input NearbyPlaceInput {
+  name: String!
+  distance: LengthInput!
+  types: [NearbyPlaceType!]
+}
+
+type Area {
+  value: Float!
+  unit: AreaUnit!
+}
+
+input AreaInput {
+  value: Float!
+  unit: AreaUnit!
+}
+
+type Length {
+  value: Float!
+  unit: LengthUnit!
+}
+
+input LengthInput {
+  value: Float!
+  unit: LengthUnit!
+}
+
+type CalculatedAsset {
+  id: Ref!
+  name: String!
+  description: String
+  location: Location
+  currency: Currency
+  context: ProductContext
+  area: Area
+  usages: [Usage!]
+  images: [AssetImageEdge!]
+}
+
+input CalculatedAssetsArgs {
+  humanRef: Ref
+}
+
+enum ProductCategory {
+  MEETING
+  OFFICE
+  PARTY
+  WEDDING
+  DINING
+  HOTDESK
+  DEDICATEDDESK
+}
+
+enum AssetStyle {
+  QUIRKY
+  AFFORDABLE
+  CORPORATE
+  LUXURY
+}
+
+enum Currency {
+  GBP
+  EUR
+  USD
+  AMD
+  BZD
+  CAD
+  CHF
+  CNY
+  IDR
+  ILS
+  INR
+  PKR
+  PLN
+  SEK
+  ZAR
+}
+
+enum MenuKind {
+  CARTE_ITEM
+  SET_MENU
+}
+
+enum NearbyPlaceType {
+  TRAIN_STATION
+  SUBWAY_STATION
+}
+
+enum ConfigurationKind {
+  SEATED
+  RECEPTION
+  BOARDROOM
+  CLASSROOM
+  BANQUET
+  THEATRE
+  U_SHAPED
+  CABARET
+}
+
+enum TimeUnit {
+  PERIOD
+  YEAR
+  MONTH
+  WEEK
+  DAY
+  SPAN
+  TOSPANEND
+  HOUR
+}
+
+enum PriceCoverage {
+  ALLIN
+  MINIMUMSPEND
+  FLATRATE
+}
+
+enum Month {
+  JANUARY
+  FEBRUARY
+  MARCH
+  APRIL
+  MAY
+  JUNE
+  JULY
+  AUGUST
+  SEPTEMBER
+  OCTOBER
+  NOVEMBER
+  DECEMBER
+}
+
+enum DayOfWeek {
+  MONDAY
+  TUESDAY
+  WEDNESDAY
+  THURSDAY
+  FRIDAY
+  SATURDAY
+  SUNDAY
+}
+
+enum AreaUnit {
+  M2
+  FT2
+}
+
+enum LengthUnit {
+  METER
+  FEET
+}
+
+enum ImageType {
+  NOIMAGETYPE
+  ASSET
+  FOOD
+  SITEIMAGE
+}

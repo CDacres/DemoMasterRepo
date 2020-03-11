@@ -1,0 +1,14 @@
+extend type Query {
+  tagsReference: [TagCatalogItem] @field(resolver: "App\\Http\\GraphQL\\Queries\\Reference\\Tags")
+}
+
+type TagCatalogItem {
+  tag: Tag
+  orderIndex: Int
+  productCategory: ProductCategory
+}
+
+type Tag {
+  id: Ref!
+  description: String!
+}

@@ -1,0 +1,23 @@
+type Query
+
+type Mutation
+
+type MutationResult {
+  problems: [MutationProblem!]!
+}
+
+type MutationProblem {
+  type: ProblemType!
+  message: String!
+}
+
+enum ProblemType {
+  AUTHENTICATION
+  AUTHORIZATION
+  VALIDATION
+}
+
+"This is symbolic reference"
+scalar Ref
+
+#import Domains/*.graphql

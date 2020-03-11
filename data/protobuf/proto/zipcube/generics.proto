@@ -1,0 +1,14 @@
+syntax = "proto3";
+option php_namespace  = "App\\Types";
+option php_metadata_namespace = "ProtobufMeta";
+
+package zipcube;
+
+message Id {
+  string value = 1;
+}
+
+message CId {
+  repeated Id collection = 1;
+}
+

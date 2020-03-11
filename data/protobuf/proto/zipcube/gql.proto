@@ -1,0 +1,73 @@
+syntax = "proto3";
+option php_namespace  = "App\\Types\\GQL";
+option php_metadata_namespace = "ProtobufMeta";
+
+import "zipcube/assets.proto";
+import "zipcube/generics.proto";
+
+package zipcube.graphql;
+
+message MutationResult {
+  repeated Problem problems = 1;
+}
+
+message Problem {
+  ProblemType type = 1;
+  string message = 2;
+}
+
+enum ProblemType {
+  NOPROBLEM = 0;
+  AUTHENTICATION = 1;
+  AUTHORIZATION = 2;
+  VALIDATION = 3;
+}
+
+message ListingsAsset {
+  Id id = 1;
+  string name = 2;
+  string description = 3;
+  Location location = 4;
+  Currency currency = 5;
+  ProductContext context = 6;
+  Area area = 7;
+  repeated Usage usages = 8;
+  repeated ImageEdge images = 9;
+}
+
+message ListingsVenue {
+  ListingsAsset asset = 1;
+  VenueDetails details = 2;
+  repeated ListingsSpace spaces = 3;
+}
+
+message ListingsVenueInput {
+  ListingsAsset asset = 1;
+  VenueDetails details = 2;
+}
+
+message ListingsSpace {
+  ListingsAsset asset = 1;
+  SpaceDetails details = 2;
+  int32 tableCount = 3;
+}
+
+message ListingsSpaceInput {
+  ListingsAsset asset = 1;
+  SpaceDetails details = 2;
+  int32 tableCount = 3;
+  Id parentId = 4;
+}
+
+message ListingsVenuesArgs {
+  Id humanRef = 1;
+}
+
+message CalculatedAssetsArgs {
+  Id humanRef = 1;
+}
+
+message PatchAddressInput {
+  Id id = 1;
+  Address address = 2;
+}

@@ -1,0 +1,43 @@
+extend type Mutation  @middleware(checks: ["is_logged_in_graphql"]) {
+  uploadImage(input: UploadImageInput!): MutationResult
+}
+
+input UploadImageInput {
+  image: ImageInput!
+  file: File!
+}
+
+type Image {
+  id: Ref!
+  type: ImageType
+  categories: [ProductCategory]
+  tags: [Tag]
+  imageUrls: [ImageUrl]
+  downloadLink: String
+    @field(resolver: "App\\Http\\GraphQL\\Fields\\ImageDownloadLink")
+}
+
+input ImageInput {
+  id: Ref!
+  type: ImageType!
+  categories: [ProductCategory]
+}
+
+type ImageUrl {
+  url: String
+  imageSize: ImageSize
+}
+
+enum ImageSize {
+  SMALL
+  MEDIUM
+  LARGE
+  HUGE
+  BANNER
+}
+
+enum ImageType {
+  ASSET
+  FOOD
+  SITE_IMAGES
+}
