@@ -6,16 +6,16 @@ use App\ZipcubeInterface\DomainCommand;
 
 use App\DomainFramework\State;
 
-use Google\Protobuf\Internal\RepeatedField;
-
 use App\Types\Asset;
-use App\Types\AssetConfiguration;
+use App\Types\AssetAmenityEdge;
 use App\Types\CAsset;
+use App\Types\DailyHours;
 use App\Types\ImposingAssets;
 use App\Types\Product;
 use App\Types\ProductCategory;
 use App\Types\ProductContext;
 use App\Types\ProductPriceSchedule;
+use App\Types\TagEdge;
 use App\Types\Usage;
 
 class CalculatesAssetsService extends DomainCommand {
@@ -25,11 +25,24 @@ class CalculatesAssetsService extends DomainCommand {
     $targets = $imposingAssets->getTargets();
     return new CAsset(['collection' => collect($targets)->map(function (Asset $target) use ($template) {
       return $this->imposeAsset($template, $target);
-    })]);
+    })->all()]);
   }
 
-  private function imposeAsset(Asset $template, Asset $target): Asset {
+  public function calculatedAssetFromAsset(Asset $asset): Asset {
+    $calculatedAsset = $this->buildEmptyCalculatedAsset($asset);
+    return $this->imposeAsset($asset, $calculatedAsset, true);
+  }
+
+  private function imposeAsset(Asset $template, Asset $target, bool $isCalculatedAsset = false ): Asset {
     $this->imposeAssetName($template, $target);
+    $this->imposeAssetDescription($template, $target);
+    $this->imposeAssetLocation($template, $target);
+    $this->imposeAssetCurrency($template, $target);
+    $this->imposeAssetContext($template, $target);
+    $this->imposeAssetArea($template, $target);
+    if ($isCalculatedAsset === true) {
+      $this->imposeCalculatedAssetUsages($template, $target);
+    }
     return $target;
   }
 
@@ -43,114 +56,156 @@ class CalculatesAssetsService extends DomainCommand {
     }
   }
 
-  //TODO: Cleanup below code for asset calculation/inheritance
+  private function imposeAssetLocation(Asset $template, Asset $target): void {
+    if (is_null($target->getLocation())) {
+      $target->setLocation($template->getLocation());
+    }
+  }
 
-  public function calculatedAssetFromAsset(Asset $asset): Asset {
+  private function imposeAssetCurrency(Asset $template, Asset $target): void {
+    if ($target->getCurrency() == 0) {
+      $target->setCurrency($template->getCurrency());
+    }
+  }
+
+  private function imposeAssetContext(Asset $template, Asset $target): void {
+    if (!is_null($template->getContext())) {
+      if (is_null($target->getContext())) {
+        $target->setContext(new ProductContext());
+      }
+      $this->imposeContextWebsite($template, $target);
+      $this->imposeContextSchedule($template, $target);
+      $this->imposeContextConfigurations($template, $target);
+      $this->imposeContextAmenities($template, $target);
+      $this->imposeContextTags($template, $target);
+      $this->imposeContextMenus($template, $target);
+    }
+  }
+
+  private function imposeContextWebsite(Asset $template, Asset $target): void {
+    if ($target->getContext()->getWebsite() == '') {
+      $target->getContext()->setWebsite($template->getContext()->getWebsite());
+    }
+  }
+
+  private function imposeContextSchedule(Asset $template, Asset $target): void {
+    if (!is_null($template->getContext()->getSchedule())) {
+      $imposedSchedule = $template->getContext()->getSchedule();
+      if (!is_null($target->getContext()->getSchedule()) && !is_null($target->getContext()->getSchedule()->getDays()) && count($target->getContext()->getSchedule()->getDays()) > 0) {
+        $inheritedDailyHours = $this->calculatedDailyHoursFromDailyHoursAndContextSchedule($target->getContext()->getSchedule()->getDays(), $template->getContext()->getSchedule());
+        $imposedSchedule = new ProductPriceSchedule(['days' => $inheritedDailyHours]);
+      }
+      $target->getContext()->setSchedule($imposedSchedule);
+    }
+  }
+
+  private function imposeContextAmenities(Asset $template, Asset $target): void {
+    if (!is_null($template->getContext()->getAmenities()) && count($template->getContext()->getAmenities()) > 0) {
+      $imposedAmenities = $template->getContext()->getAmenities();
+      if (!is_null($target->getContext()->getAmenities()) && count($target->getContext()->getAmenities()) > 0) {
+        $amenityIds = [];
+        $imposedAmenities = collect($target->getContext()->getAmenities())->map(function (AssetAmenityEdge $targetAmenity) use (&$amenityIds) {
+          array_push($amenityIds, $targetAmenity->getAmenityId());
+          return $targetAmenity;
+        })->all();
+        collect($template->getContext()->getAmenities())->map(function (AssetAmenityEdge $templateAmenity) use ($amenityIds, &$imposedAmenities) {
+          if (!in_array($templateAmenity->getAmenityId(), $amenityIds) && $templateAmenity->getSuppressed() == false) {
+            array_push($imposedAmenities, $templateAmenity);
+          }
+        });
+      }
+      $target->getContext()->setAmenities($imposedAmenities);
+    }
+  }
+
+  private function imposeContextTags(Asset $template, Asset $target): void {
+    if (!is_null($template->getContext()->getTags()) && count($template->getContext()->getTags()) > 0) {
+      $imposedTags = $template->getContext()->getTags();
+      if (!is_null($target->getContext()->getTags()) && count($target->getContext()->getTags()) > 0) {
+        $imposedTags = collect($target->getContext()->getTags())->all();
+        collect($template->getContext()->getTags())->map(function (TagEdge $templateTag) use (&$imposedTags) {
+          if (!in_array($templateTag, $imposedTags) && $templateTag->getSuppressed() == false) {
+            array_push($imposedTags, $templateTag);
+          }
+        });
+      }
+      $target->getContext()->setTags($imposedTags);
+    }
+  }
+
+  private function imposeContextMenus(Asset $template, Asset $target): void {
+    if (!is_null($template->getContext()->getMenus()) && count($template->getContext()->getMenus()) > 0) {
+      $imposedMenus = $template->getContext()->getMenus();
+      if (!is_null($target->getContext()->getMenus()) && count($target->getContext()->getMenus()) > 0) {
+        $imposedMenus = array_merge(collect($template->getContext()->getMenus())->all(), collect($target->getContext()->getMenus())->all());
+      }
+      $target->getContext()->setMenus($imposedMenus);
+    }
+  }
+
+  private function buildEmptyCalculatedAsset(Asset $asset): Asset {
     $calculatedAsset = new Asset();
     $calculatedAsset->setId($asset->getId());
     $calculatedAsset->setName($asset->getName());
     $calculatedAsset->setDescription($asset->getDescription());
-    $calculatedAsset->setLocation($asset->getLocation());
-    $calculatedAsset->setCurrency($asset->getCurrency());
     $calculatedAsset->setArea($asset->getArea());
-    $calculatedAsset->setContext($asset->getContext());
-    $calculatedAsset->setUsages($this->populateCalculatedUsages($asset));
-    $calculatedAsset = $this->setAssetDetails($asset, $calculatedAsset);
-
+    if (!is_null($asset->getContext())) {
+      $calculatedAsset->setContext(new ProductContext(['configurations' => $asset->getContext()->getConfigurations()]));
+    }
+    $this->setAssetDetails($asset, $calculatedAsset);
     return $calculatedAsset;
   }
 
-  public function inheritFromParentAsset(CAsset $assetPair): Asset {
-    $asset = $assetPair->getCollection()[0];
-    $parentAsset = $assetPair->getCollection()[1];
-    if (!empty($parentAsset->getContext())) {
-      $asset->setContext($this->handleContextInheritence($parentAsset->getContext(), $asset->getContext()));
-    }
-    return $asset;
+  private function imposeCalculatedAssetUsages(Asset $template, Asset $target): void {
+    $target->setUsages($this->buildCalculatedUsages($template));
   }
 
-  private function populateCalculatedUsages(Asset $asset): array {
-    $usages = $asset->getUsages();
+  private function buildCalculatedUsages(Asset $asset): array {
     $assetContext = $asset->getContext();
-    $calculatedUsages = [];
-    foreach ($usages as $usage) {
-      $calculatedUsages[] = $this->calculatedUsageFromUsageAndContext($usage, $assetContext);
-    }
-
-    return $calculatedUsages;
+    return collect($asset->getUsages())->map(function (Usage $usage) use ($assetContext) {
+      return $this->imposeContextOnUsage($usage, $assetContext);
+    })->all();
   }
 
-  private function calculatedUsageFromUsageAndContext(Usage $usage, ?ProductContext $assetContext): Usage {
-    $calculatedUsage = new Usage();
-    $calculatedUsage->setName($usage->getName());
-    $calculatedUsage->setCategory($usage->getCategory());
-    $calculatedUsage->setDescription($usage->getDescription());
-    $calculatedUsageContext = $this->populateContext($usage->getContext(), $assetContext);
-    if (!is_null($calculatedUsageContext)) {
-      $calculatedUsage->setContext($calculatedUsageContext);
+  private function imposeContextOnUsage(Usage $usage, ?ProductContext $assetContext): Usage {
+    if (!is_null($assetContext)) {
+      $usage->setContext($this->buildImposedContext($usage->getContext(), $assetContext));
     }
-    $calculatedUsage->setProducts($this->populateCalculatedProducts($usage, $calculatedUsage));
-
-    return $calculatedUsage;
+    $usage->setProducts($this->buildCalculatedProducts($usage));
+    return $usage;
   }
 
-  private function populateCalculatedProducts(Usage $usage, Usage $calculatedUsage): array {
-    $products = $usage->getProducts();
-    $usageContext = $calculatedUsage->getContext();
-    $calculatedProducts = [];
-    foreach ($products as $product) {
-      $calculatedProducts[] = $this->calculatedProductFromProductAndContext($product, $usageContext);
-    }
-
-    return $calculatedProducts;
+  private function buildCalculatedProducts(Usage $usage): array {
+    $usageContext = $usage->getContext();
+    return collect($usage->getProducts())->map(function (Product $product) use ($usageContext) {
+      return $this->imposeContextOnProduct($product, $usageContext);
+    })->all();
   }
 
-  private function calculatedProductFromProductAndContext(Product $product, ?ProductContext $usageContext): Product {
-    $calculatedProduct = new Product();
-    $calculatedProduct->setId($product->getId());
-    $calculatedProduct->setName($product->getName());
-    $calculatedProduct->setUnitPrice($product->getUnitPrice());
-    $calculatedProduct->setPerPerson($product->getPerPerson());
-    $calculatedProduct->setUnit($product->getUnit());
-    $calculatedProduct->setCoverage($product->getCoverage());
-    $calculatedProduct->setDescription($product->getDescription());
-    $calculatedProduct->setIncludes($product->getIncludes());
-    $calculatedProduct->setParameters($product->getParameters());
-    $calculatedProductContext = $this->populateContext($product->getContext(), $usageContext);
-    if (!is_null($calculatedProductContext)) {
-      $calculatedProduct->setContext($calculatedProductContext);
+  private function imposeContextOnProduct(Product $product, ?ProductContext $usageContext): Product {
+    if (!is_null($usageContext)) {
+      $product->setContext($this->buildImposedContext($product->getContext(), $usageContext));
     }
-
-    return $calculatedProduct;
+    return $product;
   }
 
-  private function populateContext(?ProductContext $context, ?ProductContext $inheritedContext): ?ProductContext {
-    $calculatedContext = null;
-    if (!is_null($inheritedContext)) {
-      $calculatedContext = $inheritedContext;
-      if (!is_null($context) && !is_null($context->getSchedule()) && !is_null($context->getSchedule()->getDays()) && count($context->getSchedule()->getDays()) > 0) {
-        $calculatedDailyHours = $this->calculatedDailyHoursFromDailyHoursAndContextSchedule($context->getSchedule()->getDays(), $inheritedContext->getSchedule());
-        $calculatedSchedule = new ProductPriceSchedule(['days' => $calculatedDailyHours]);
-        $calculatedContext = new ProductContext(['schedule' => $calculatedSchedule]);
-      }
-    } elseif (!is_null($context)) {
-      $calculatedContext = $context;
+  private function buildImposedContext(?ProductContext $context, ProductContext $inheritedContext): ProductContext {
+    $imposedContext = $inheritedContext;
+    if (!is_null($context) && !is_null($context->getSchedule()) && !is_null($context->getSchedule()->getDays()) && count($context->getSchedule()->getDays()) > 0) {
+      $calculatedDailyHours = $this->calculatedDailyHoursFromDailyHoursAndContextSchedule($context->getSchedule()->getDays(), $inheritedContext->getSchedule());
+      $calculatedSchedule = new ProductPriceSchedule(['days' => $calculatedDailyHours]);
+      $imposedContext = new ProductContext(['schedule' => $calculatedSchedule]);
     }
-
-    return $calculatedContext;
+    return $imposedContext;
   }
 
   private function calculatedDailyHoursFromDailyHoursAndContextSchedule($dailyHours, ?ProductPriceSchedule $inheritedSchedule): array {
     $dailyHoursArray = $this->populateDailyHoursArray($dailyHours);
     $calculatedDailyHours = $dailyHoursArray['calculatedDailyHours'];
-    $contextDailyHours = $dailyHoursArray['contextDailyHours'];
-    $allowInherited = $dailyHoursArray['allowInherited'];
-    if ($allowInherited && !is_null($inheritedSchedule) && !is_null($inheritedSchedule->getDays()) && count($inheritedSchedule->getDays()) > 0) {
-      $inheritedDailyHours = $inheritedSchedule->getDays();
-      $filteredDailyHours = $this->filterInheritedDailyHours($inheritedDailyHours, $contextDailyHours);
-      $calculatedDailyHours = array_merge($calculatedDailyHours,$filteredDailyHours);
+    if ($dailyHoursArray['allowInherited'] && !is_null($inheritedSchedule) && !is_null($inheritedSchedule->getDays()) && count($inheritedSchedule->getDays()) > 0) {
+      $filteredDailyHours = $this->filterInheritedDailyHours($inheritedSchedule->getDays(), $dailyHoursArray['contextDailyHours']);
+      $calculatedDailyHours = array_merge($calculatedDailyHours, $filteredDailyHours);
     }
-
     return $calculatedDailyHours;
   }
 
@@ -160,116 +215,37 @@ class CalculatesAssetsService extends DomainCommand {
       'calculatedDailyHours' => [],
       'allowInherited' => true,
     ];
-    foreach ($dailyHours as $dailyHour) {
+    collect($dailyHours)->map(function (DailyHours $dailyHour) use (&$dailyHoursArray) {
       $dailyHoursArray['contextDailyHours'][$dailyHour->getDay()] = $dailyHour->getSpans();
       $dailyHoursArray['calculatedDailyHours'][] = $dailyHour;
       if ($dailyHour->getDay() == 0) {
         $dailyHoursArray['allowInherited'] = false;
       }
-    }
-
+    });
     return $dailyHoursArray;
   }
 
   private function filterInheritedDailyHours($inheritedDailyHours, $contextDailyHours) {
-    $filteredDailyHours = [];
-    foreach ($inheritedDailyHours as $inheritedDailyHour) {
+    $filteredDailyHours = collect($inheritedDailyHours)->filter(function (DailyHours $inheritedDailyHour) use ($contextDailyHours) {
       if (!isset($contextDailyHours[$inheritedDailyHour->getDay()])) {
-        $filteredDailyHours[] = $inheritedDailyHour;
+        return $inheritedDailyHour;
       }
-    }
-
+    })->all();
     return $filteredDailyHours;
   }
 
-  private function setAssetDetails(Asset $asset, Asset $calculatedAsset): Asset {
+  private function setAssetDetails(Asset $asset, Asset $calculatedAsset): void {
     $detailsType = $asset->getDetails();
     if (!empty($detailsType)) {
       $getFunctionName = "get".ucfirst($detailsType);
       $setFunctionName = "set".ucfirst($detailsType);
       $calculatedAsset->$setFunctionName($asset->$getFunctionName());
     }
-    return $calculatedAsset;
   }
 
-  private function handleContextInheritence(ProductContext $parentContext, ?ProductContext $context): ProductContext {
-    if (!empty($context)) {
-      if (empty($context->getWebsite())) {
-        $context->setWebsite($parentContext->getWebsite());
-      }
-      if (!empty($schedule = $this->handleScheduleInheritance($parentContext->getSchedule(), $context->getSchedule()))) {
-        $context->setSchedule($schedule);
-      }
-      if (!empty($configs = $this->handleConfigurationInheritance($parentContext->getConfigurations(), $context->getConfigurations()))) {
-        $context->setConfigurations($configs);
-      }
-      if (!empty($amenities = $this->handleAmenityInheritance($parentContext->getAmenities(), $context->getAmenities()))) {
-        $context->setAmenities($amenities);
-      }
-      if (!empty($tags = $this->handleTagInheritance($parentContext->getTags(), $context->getTags()))) {
-        $context->setTags($tags);
-      }
-      if (!empty($menus = $this->handleMenuInheritance($parentContext->getMenus(), $context->getMenus()))) {
-        $context->setMenus($menus);
-      }
-      return $context;
-    }
-    return $parentContext;
-  }
+  private function imposeAssetDescription(Asset $template, Asset $target): void {}
 
-  private function handleScheduleInheritance(?ProductPriceSchedule $parentSchedule, ?ProductPriceSchedule $schedule): ?ProductPriceSchedule {
-    $inheritedSchedule = $schedule;
-    if (!is_null($parentSchedule)) {
-      $inheritedSchedule = $parentSchedule;
-      if (!is_null($schedule) && !is_null($schedule->getDays()) && count($schedule->getDays()) > 0) {
-        $inheritedDailyHours = $this->calculatedDailyHoursFromDailyHoursAndContextSchedule($schedule->getDays(), $parentSchedule);
-        $inheritedSchedule = new ProductPriceSchedule(['days' => $inheritedDailyHours]);
-      }
-    }
-    return $inheritedSchedule;
-  }
+  private function imposeAssetArea(Asset $template, Asset $target): void {}
 
-  private function handleConfigurationInheritance($parentConfigs, $configs) {
-    $inheritedConfigs = $configs;
-    if (!empty($parentConfigs) && count($parentConfigs) > 0) {
-      $inheritedConfigs = $parentConfigs;
-      if (!empty($configs) && count($configs) > 0) {
-        $inheritedConfigs = $configs;
-      }
-    }
-    return $inheritedConfigs;
-  }
-
-  private function handleAmenityInheritance($parentAmenities, $amenities) {
-    $inheritedAmenities = $amenities;
-    if (!empty($parentAmenities) && count($parentAmenities) > 0) {
-      $inheritedAmenities = $parentAmenities;
-      if (!empty($amenities) && count($amenities) > 0) {
-        $inheritedAmenities = array_merge(collect($parentAmenities)->all(), collect($amenities)->all());
-      }
-    }
-    return $inheritedAmenities;
-  }
-
-  private function handleTagInheritance($parentTags, $tags) {
-    $inheritedTags = $tags;
-    if (!empty($parentTags) && count($parentTags) > 0) {
-      $inheritedTags = $parentTags;
-      if (!empty($tags) && count($tags) > 0) {
-        $inheritedTags = array_merge(collect($parentTags)->all(), collect($tags)->all());
-      }
-    }
-    return $inheritedTags;
-  }
-
-  private function handleMenuInheritance($parentMenus, $menus) {
-    $inheritedMenus = $menus;
-    if (!empty($parentMenus) && count($parentMenus) > 0) {
-      $inheritedMenus = $parentMenus;
-      if (!empty($menus) && count($menus) > 0) {
-        $inheritedMenus = array_merge(collect($parentMenus)->all(), collect($menus)->all());
-      }
-    }
-    return $inheritedMenus;
-  }
+  private function imposeContextConfigurations(Asset $template, Asset $target): void {}
 }

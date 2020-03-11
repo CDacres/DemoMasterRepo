@@ -31,7 +31,7 @@ class CalculatedAssets
   public function __invoke($rootValue, CalculatedAssetsArgs $data, GraphQLContext $context = null, ResolveInfo $resolveInfo)
   {
     $humanRefs = new CId();
-    $humanRefs->setCollection([$data->getHumanRef()]);
+    $humanRefs->setCollection($data->getHumanRefs());
     $map = $this->getAssetIdMap($humanRefs);
     if ($map->getCollection()->count() === 1) {
       $id = $map->getCollection()[0]->getId();
