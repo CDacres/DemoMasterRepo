@@ -1,0 +1,73 @@
+import { StyleSheet } from 'aphrodite/no-important';
+
+export default StyleSheet.create({
+  optionImageWithTextInnerWrapper: {
+    width: '100%',
+    height: '100%',
+    borderRadius: '3px',
+    overflow: 'hidden',
+  },
+  optionImageWithTextInner: {
+    height: '100%',
+    width: '100%',
+    position: 'relative',
+  },
+  cardImageInnerAbsolute: {
+    position: 'absolute',
+    top: '50%',
+    transform: 'translateY(-50%)',
+    width: '100%',
+  },
+  cardImageInnerWrapper: {
+    paddingTop: '62.5%',
+    position: 'relative',
+    backgroundPosition: '50% 50%',
+    backgroundRepeat: 'no-repeat',
+  },
+  cardImage: {
+    objectFit: 'cover',
+    height: '100%',
+    width: '100%',
+    position: 'static',
+    top: '0px',
+    bottom: '0px',
+    left: '0px',
+    right: '0px',
+  },
+  cardImageDiv: {
+    backgroundSize: 'cover',
+    display: 'none',
+    backgroundImage: 'none',
+    verticalAlign: 'bottom',
+    height: '100%',
+    width: '100%',
+    position: 'absolute',
+    top: '0px',
+    bottom: '0px',
+    left: '0px',
+    right: '0px',
+    backgroundPosition: '50% 50%',
+    backgroundRepeat: 'no-repeat',
+  },
+  cardImageTextWrapper: {
+    position: 'absolute',
+    top: '0px',
+    bottom: '0px',
+    left: '0px',
+    right: '0px',
+    paddingLeft: '24px',
+    paddingRight: '24px',
+    paddingTop: '24px',
+    paddingBottom: '16px',
+  },
+  cardImageTextContainer: {
+    display: 'inline-block',
+    maxWidth: '250px',
+  },
+  cardImageText: {
+    fontWeight: 700,
+    fontSize: '24px',
+    lineHeight: '26px',
+    position: 'relative',
+  },
+});

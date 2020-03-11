@@ -1,0 +1,5 @@
+{
+  "pages": "strict/react/pages",
+  "components": "strict/react/components",
+  "styles": "strict/styles"
+}

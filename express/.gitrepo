@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = git@github.com:ChristianDacresZipcube/express.git
+	branch = demo
+	commit = e74dd084aea23bd1dcd00e755ffecc0b4e0662a5
+	parent = 6a95e9afe62572e43995d9e05d3ec36fea63565d
+	method = merge
+	cmdver = 0.4.1

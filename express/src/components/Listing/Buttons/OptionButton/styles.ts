@@ -1,0 +1,9 @@
+import { StyleSheet } from 'aphrodite/no-important';
+
+export default StyleSheet.create({
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    margin: '-4px',
+  },
+});

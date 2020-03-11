@@ -1,0 +1,12 @@
+.git
+.vscode
+.env
+build
+Dockerfile
+node_modules
+.DS_Store
+.gitignore
+.next
+src/.next
+build
+dist

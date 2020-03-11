@@ -1,0 +1,9 @@
+export const MEETING = 1;
+export const OFFICE = 2;
+export const PARTY = 3;
+export const DINING = 4;
+export const WEDDING = 5;
+export const ART = 6;
+export const SPORT = 7;
+// export const POPUP = 8;
+// export const ACTIVITY = 9;

@@ -1,0 +1,51 @@
+import { StyleSheet } from 'aphrodite/no-important';
+
+export default StyleSheet.create({
+  carouselButtonContainerOuter: {
+    position: 'absolute',
+    pointerEvents: 'none',
+    top: '0px',
+    height: '100%',
+    width: '100%',
+    borderRadius: '3px',
+    overflow: 'hidden',
+  },
+  carouselButtonContainerOuter_hidden: {
+    display: 'block',
+    height: '1px',
+    width: '1px',
+    clip: 'rect(0px, 0px, 0px, 0px)',
+    background: 'linear-gradient(to left, transparent 0%, rgba(0, 0, 0, 0.25) 100%)',
+    borderWidth: '0px',
+    borderStyle: 'initial',
+    borderColor: 'initial',
+    borderImage: 'initial',
+    margin: '-1px',
+    padding: '0px',
+  },
+  carouselButtonContainerInner: {
+    position: 'relative',
+    width: '100%',
+    height: '100%',
+    pointerEvents: 'none',
+    background: 'transparent',
+  },
+  imageContainer: {
+    position: 'absolute',
+    top: '0px',
+    bottom: '0px',
+    left: '0px',
+    right: '0px',
+    height: '100%',
+    width: '100%',
+  },
+  imageWrapper: {
+    position: 'relative',
+    width: '100%',
+    zIndex: 0,
+    borderRadius: '3px',
+    overflow: 'hidden',
+    paddingTop: '66.6667%',
+    background: '#d8d8d8 none repeat scroll 0% 0%',
+  },
+});

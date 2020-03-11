@@ -1,0 +1,53 @@
+import { StyleSheet } from 'aphrodite/no-important';
+
+export default StyleSheet.create({
+  button: {
+    border: '0px none',
+    width: '100%',
+    background: 'transparent',
+    textAlign: 'inherit',
+    cursor: 'pointer',
+    display: 'block',
+  },
+  container: {
+    paddingTop: '100%',
+    position: 'relative',
+    backgroundPosition: '50% 50%',
+    backgroundRepeat: 'no-repeat',
+  },
+  inner: {
+    position: 'absolute',
+    top: '0px',
+    bottom: '0px',
+    left: '0px',
+    right: '0px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  img: {
+    objectFit: 'cover',
+    height: '100%',
+    width: '100%',
+    position: 'static',
+    top: '0px',
+    bottom: '0px',
+    left: '0px',
+    right: '0px',
+  },
+  content: {
+    display: 'none',
+    backgroundImage: 'none',
+    backgroundSize: 'cover',
+    verticalAlign: 'bottom',
+    height: '100%',
+    width: '100%',
+    position: 'absolute',
+    top: '0px',
+    bottom: '0px',
+    left: '0px',
+    right: '0px',
+    backgroundPosition: '50% 50%',
+    backgroundRepeat: 'no-repeat',
+  },
+});

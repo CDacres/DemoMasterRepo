@@ -1,0 +1,75 @@
+import { StyleSheet } from 'aphrodite/no-important';
+
+export default StyleSheet.create({
+  menuContainer: {
+    position: 'fixed',
+    zIndex: 2000,
+    top: '0px',
+    right: '0px',
+    bottom: '0px',
+    left: '0px',
+    overflowY: 'auto',
+    background: 'rgba(255, 255, 255, 0.8) none repeat scroll 0% 0%',
+  },
+  menuTable: {
+    display: 'table',
+    height: '100%',
+    width: '100%',
+  },
+  menuWrapper: {
+    backgroundColor: '#ffffff',
+    margin: 'auto',
+    width: '100%',
+    position: 'relative',
+    boxShadow: '0px 1px 10px 0px rgba(0, 0, 0, 0.2)',
+    maxWidth: '376px',
+  },
+  menuWrapperLarge: {
+    maxWidth: '568px',
+  },
+  mobileContainer: {
+    position: 'fixed',
+    top: '0px',
+    right: '0px',
+    bottom: '0px',
+    left: '0px',
+    transform: 'translate3d(0px, 0px, 0px)',
+    background: 'rgba(0, 0, 0, 0) none repeat scroll 0% 0%',
+    pointerEvents: 'none',
+    overflowY: 'hidden',
+    zIndex: 2000,
+  },
+  mobileWrapper: {
+    pointerEvents: 'auto',
+    backgroundColor: '#ffffff',
+    borderTop: '1px solid #ebebeb',
+    boxShadow: '0px 0px 2px 0px rgba(22, 22, 22, 0.2)',
+    height: '100%',
+    width: '100%',
+    overflowY: 'hidden',
+    position: 'relative',
+    willChange: 'transform',
+  },
+  mobileInner: {
+    overflowY: 'auto',
+    top: '0px',
+    bottom: '0px',
+    width: '100%',
+    position: 'absolute',
+  },
+  mobileButtonContainer: {
+    height: '58px',
+    paddingLeft: '20px',
+    paddingRight: '20px',
+    display: 'table',
+    verticalAlign: 'top',
+    width: '100%',
+  },
+  mobileButtonWrapper: {
+    width: '30%',
+  },
+  mobileDetails: {
+    paddingLeft: '20px',
+    paddingRight: '20px',
+  },
+});

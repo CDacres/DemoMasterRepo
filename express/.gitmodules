@@ -1,0 +1,6 @@
+[submodule "src/helpers/CurrencyHelper/countries"]
+	path = src/helpers/CurrencyHelper/countries
+	url = git@github.com:mledoze/countries.git
+[submodule "src/helpers/CurrencyHelper/world-currencies"]
+	path = src/helpers/CurrencyHelper/world-currencies
+	url = git@github.com:mhs/world-currencies.git

@@ -1,0 +1,4 @@
+export enum NearbyPlaceType {
+  TRAIN_STATION = 'TRAIN_STATION',
+  SUBWAY_STATION = 'SUBWAY_STATION',
+}

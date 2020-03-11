@@ -1,0 +1,208 @@
+.add_text {
+  overflow-wrap: break-word !important;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif !important;
+  font-size: 19px !important;
+  line-height: 24px !important;
+  letter-spacing: undefined !important;
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+  color: #484848 !important;
+  font-weight: 300 !important;
+}
+
+.add_text hr {
+  height: 1px;
+  border: none;
+  margin: 1em 0em;
+  padding: 0px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+.add_text p {
+  margin: 8px 0px 0px 0px !important;
+  overflow-wrap: break-word !important;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif !important;
+  font-size: 19px !important;
+  line-height: 24px !important;
+  letter-spacing: undefined !important;
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+  color: #484848 !important;
+  font-weight: 300 !important;
+}
+
+.add_text span {
+  margin: 8px 0px 0px 0px !important;
+  overflow-wrap: break-word !important;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif !important;
+  font-size: 19px !important;
+  line-height: 24px !important;
+  letter-spacing: undefined !important;
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+  color: #484848 !important;
+  font-weight: 300 !important;
+}
+
+.add_text ul {
+  margin-top: 0px;
+  margin-bottom: 15px;
+  padding-left: 25px;
+  margin-left: 32px !important;
+}
+
+.add_text li {
+  margin-top: 16px;
+  margin-bottom: 15px;
+  padding-left: 25px;
+}
+
+.add_text h2 {
+  font-weight: 700 !important;
+  margin: 0px !important;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif !important;
+  font-size: 32px !important;
+  line-height: 36px !important;
+  letter-spacing: -0.6px !important;
+  padding-top: 2px !important;
+  padding-bottom: 2px !important;
+  color: #484848 !important;
+}
+
+.add_text h3 {
+  font-weight: 700 !important;
+  margin-bottom: 0px !important;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif !important;
+  font-size: 28px !important;
+  line-height: 32px !important;
+  letter-spacing: -0.6px !important;
+  padding-top: 2px !important;
+  padding-bottom: 2px !important;
+  color: #484848 !important;
+}
+
+.add_text h4 {
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif !important;
+  font-size: 19px !important;
+  line-height: 24px !important;
+  letter-spacing: undefined !important;
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+  color: #484848 !important;
+  font-weight: 300 !important;
+  margin-top: 0px !important;
+}
+
+.text_container {
+  padding: 1.5em 0em;
+}
+
+.text_container:before {
+  content: " " !important;
+  display: table !important;
+}
+
+.text_container:after {
+  content: " " !important;
+  display: table !important;
+  clear: both !important;
+}
+
+@media (max-width: 767px) {
+  .text_container {
+    width: 100% !important;
+    margin: 0px auto !important;
+    margin-bottom: 20px !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .text_container {
+    display: table !important;
+    width: 85% !important;
+    margin: 0px auto !important;
+  }
+}
+
+@media (min-width: 1128px) {
+  .text_container {
+    max-width: 900px !important;
+  }
+}
+
+.button-link {
+  cursor: pointer;
+  -webkit-transition: background 0.3s, border-color 0.3s;
+  -moz-transition: background 0.3s, border-color 0.3s;
+  transition: background 0.3s, border-color 0.3s;
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 4px;
+  width: auto;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif !important;
+  font-size: 19px;
+  line-height: 22px;
+  letter-spacing: undefined;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  color: #fff;
+  font-weight: 700;
+  border: 2px solid transparent;
+  padding-right: 24px;
+  padding-left: 24px;
+  min-width: 77.66563145999496px;
+  background: #00c6ff;
+  border-color: transparent;
+}
+
+.button-link:active {
+  background: #00c6ff;
+  border-color: transparent;
+}
+
+.button-link:hover {
+  background: #00c6ff;
+  border-color: transparent;
+}
+
+.button-link:disabled {
+  background: rgba(0, 132, 137, 0.3);
+  border-color: transparent;
+  cursor: default;
+}
+
+.add_text a.button-link:hover {
+  text-decoration: none;
+}
+
+.add_text a.button-link span {
+  font-weight: 700 !important;
+  color: #fff !important;
+}
+
+.add_text a {
+  color: #00c6ff;
+  text-decoration: none;
+}
+
+.add_text a:hover {
+  color: #00c6ff;
+  text-decoration: none;
+}
+
+.add_text a:focus {
+  color: #00c6ff;
+  text-decoration: none;
+}
+
+.add_text a:active {
+  color: #00c6ff;
+  text-decoration: none;
+}
+
+.add_text a:visited {
+  color: #00c6ff;
+  text-decoration: none;
+}

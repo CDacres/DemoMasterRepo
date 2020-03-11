@@ -1,0 +1,106 @@
+{
+    // This file is automatically created - to update use the templates in './buildConfigs'
+    "env": {
+        "development": {
+            "presets": [
+                [
+                    "next/babel",
+                    {
+                        "@babel/preset-env": {
+                            "targets": {
+                                "browsers": "defaults"
+                            },
+                            "useBuiltIns": "usage",
+                            "corejs": "3"
+                        }
+                    }
+                ]
+            ],
+            "plugins": [
+              ["@babel/plugin-proposal-decorators", { "legacy": true }],
+              ["@babel/plugin-proposal-class-properties", { "loose": true }],
+                [
+                    "module-resolver",
+                    {
+                        "root": [
+                            "./"
+                        ],
+                        "alias": {
+                            "@pages": "./src/strict/react/pages",
+                            "@components": "./src/strict/react/components",
+                            "@styles": "./src/strict/styles",
+                            "@src": "./src"
+                        }
+                    }
+                ]
+            ]
+        },
+        "production": {
+            "presets": [
+                [
+                    "next/babel",
+                    {
+                        "@babel/preset-env": {
+                            "targets": {
+                                "browsers": "defaults"
+                            },
+                            "useBuiltIns": "usage",
+                            "corejs": "3"
+                        }
+                    }
+                ]
+            ],
+            "plugins": [
+              ["@babel/plugin-proposal-decorators", { "legacy": true }],
+              ["@babel/plugin-proposal-class-properties", { "loose": true }],
+                [
+                    "module-resolver",
+                    {
+                        "root": [
+                            "./"
+                        ],
+                        "alias": {
+                          "@pages": "./src/strict/react/pages",
+                            "@components": "./src/strict/react/components",
+                            "@styles": "./src/strict/styles",
+                            "@src": "./src"
+                       }
+                    }
+                ]
+            ]
+        },
+        "test": {
+            "presets": [
+                [
+                    "@babel/env",
+                    {
+                        "modules": "commonjs",
+                        "useBuiltIns": "usage",
+                        "debug": false,
+                        "corejs": "3"
+                    }
+                ],
+                "@babel/react"
+            ],
+            "plugins": [
+                [
+                    "module-resolver",
+                    {
+                        "root": [
+                            "./"
+                        ],
+                        "alias": {
+                          "@pages": "./src/strict/react/pages",
+                            "@components": "./src/strict/react/components",
+                            "@styles": "./src/strict/styles",
+                            "@src": "./src"
+                      }
+                    }
+                ],
+                ["@babel/plugin-proposal-decorators", { "legacy": true }],
+                ["@babel/plugin-proposal-class-properties", { "loose": true }],
+                "@babel/plugin-proposal-object-rest-spread"
+            ]
+        }
+    }
+}

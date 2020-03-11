@@ -1,0 +1,47 @@
+export default () => ({
+  apiUrl: '',
+  bounds: {
+    swLat: 49.8200000,
+    swLon: -10.8500000,
+    neLat: 59.5000000,
+    neLon: 2.0000000,
+  },
+  countryCode: 'gb',
+  countryName: 'United Kingdom',
+  defaultLocation: {
+    lat: '51.5072996',
+    locationDesc: 'London, UK',
+    locationSlug: 'London--UK',
+    lon: '-0.1280232',
+  },
+  defaultSlug: 'meeting-rooms',
+  datepickerLang: 'en-GB',
+  domain: 'uk',
+  footer: { squashed: false },
+  header: {
+    floating: false,
+    smallLogo: false,
+    stayAsLink: false,
+    transparent: false,
+    withCheckoutSteps: false,
+    withSearchBar: false,
+  },
+  language: 'en',
+  languageName: 'English (UK)',
+  locale: 'en_GB',
+  phone: {
+    phoneNumber: '',
+    phoneNumberDisplay: '',
+  },
+  // redirect: {
+  //   lastUrl: '',
+  //   wasRedirected: false,
+  // },
+  route: {
+    regExp: '',
+    pathname: '',
+    langKey: '',
+    filePath: '',
+  },
+  trackingCookieId: null,
+});
