@@ -1,0 +1,63 @@
+<?php
+$lang["users_name"]="Nom";
+$lang["users_first_name"]="Prénom";
+$lang["users_last_name"]="Nom";
+$lang["users_email"]="Email";
+$lang["users_email_address"]="Adresse email";
+$lang["users_phone_number"]="Numéro de téléphone";
+$lang["users_form_error_first_name"]="Veuillez entrer un prénom valides";
+$lang["users_form_error_last_name"]="Veuillez entrer un nom de famille valide";
+$lang["users_form_error_names"]="Veuillez entrer un prénom et un nom valides";
+$lang["users_form_error_email"]="Veuillez entrer une adresse email valide";
+$lang["users_form_error_phone"]="Veuillez entrer un numéro de contact valide";
+$lang["users_form_error_name_email"]="Veuillez vous assurer que les noms et adresses électroniques sont corrects.";
+$lang["users_password"]="Mot de passe";
+$lang["users_confirm_password"]="Confirmer le mot de passe";
+$lang["users_set_password"]="Définir le mot de passe";
+$lang["users_set_password_title"]="Définir un nouveau mot de passe";
+$lang["users_set_password_info"]="Pour accéder à votre compte afin de télécharger les factures, laissez des avis et laissez le système se souvenir de vous pour la prochaine fois, veuillez configurez votre mot de passe!";
+$lang["users_set_password_success"]="<b>Vous êtes maintenant connecté, pour continuer à trouver des salles de réunion, commencez votre recherche <a href='/'>ici</a>.</b>";
+$lang["users_not_this_time"]="Pas cette fois";
+$lang["users_register_button"]="S'enregistrer";
+$lang["users_already_registered"]="Déjà enregistré?";
+$lang["users_log_in_here"]="Connectez-vous ici";
+$lang["users_forgot_password"]="Mot de passe oublié?";
+$lang["users_forgot_your_password"]="Mot de passe oublié?";
+$lang["users_request_password"]="Demande de mot de passe";
+$lang["users_reset_password"]="Réinitialiser le mot de passe";
+$lang["users_auto_password"]="Auto-génération du mot de passe";
+$lang["users_create_password"]="Laissez-moi créer le mot de passe";
+$lang["users_not_registered_yet"]="Pas encore enregistré?";
+$lang["users_sign_up_here"]="Inscrivez-vous ici";
+$lang["users_signup_terms"]="En m'inscrivant, j'accepte les <a href='/:country_url/legal' target='_blank'>Conditions d'utilisation</a> et la <a href='/:country_url/legal#PrivacyPolicy' target='_blank'>Politique de confidentalité</a> de Zipcube.";
+$lang["users_create_account"]="Créer un compte";
+$lang["users_create_new_account"]="Créer un nouveau compte";
+$lang["users_request"]="Demander";
+$lang["users_request_new_password"]="Demander un nouveau mot de passe";
+$lang["users_request_new_password_text"]="Entrez l'adresse email associée à votre compte et nous vous enverrons un lien pour réinitialiser votre mot de passe.";
+$lang["users_request_reset_success"]="Un email vous a été envoyé avec les instructions vous permettant d'activer votre nouveau mot de passe.";
+$lang["users_save_password_heading"]="{{1}}, dernière étape..."; //{{1}} = user
+$lang["users_save_password_subheading"]="Si cela ne vous dérange pas de nous donner quelques détails maintenant, nous allons les stocker en toute sécurité, pour faciliter votre réservation la prochaine fois. Vous aurez également accès à vos factures, à la possibilité d'annuler, d'inviter des participants et plus encore.";
+$lang["users_already_account"]="Déjà un compte?";
+$lang["users_no_account"]="Pas de compte?";
+$lang["users_get_started"]="Pour commencer";
+$lang["users_find"]="Trouver votre<br>espace idéal";
+$lang["users_book_with"]="Réservez avec Zipcube";
+$lang["users_book_power"]="Une recherche simple et efficace";
+$lang["users_book_best"]="Meilleur prix garanti";
+$lang["users_remember_me"]="Souviens-toi de moi";
+$lang["users_login_with_facebook"]="Se connecter avec Facebook";
+$lang["users_login_with_google"]="Se connecter avec Google";
+$lang["users_login_with_linkedin"]="Se connecter avec LinkedIn";
+$lang["users_login_signing_in"]="S'inscrire en tant que {{1}}"; //{{1}} = user
+$lang["users_signup_with_email"]="S'enregistrer avec l'adresse e-mail";
+$lang["users_already_have_account"]="Vous avez déjà un compte Zipcube?";
+$lang["users_signup_with_facebook"]="Inscrivez-vous avec Facebook";
+$lang["users_signup_with_google"]="Inscrivez-vous avec Google";
+$lang["users_signup_with_linkedin"]="Inscrivez-vous avec LinkedIn";
+$lang["users_unsubscribe_title"]="Vous êtes sur point de vous désabonner des emails Zipcube!";
+$lang["users_unsubscribe"]="Cliquez ci-dessous pour vous désabonner des emails promotionnels, des mises à jour et des emails généraux.";
+$lang["users_notifications"]="Si vous voulez modifier vos préférences de messagerie, vous pouvez le faire dans votre <a href='/{{1}}/dashboard/subscribe'> compte </a>."; //{{1}} = country_url
+$lang["users_unsubscribe_me"]="Désabonnez-moi";
+$lang["users_unsubscribed"]="Vous avez été désabonné";
+$lang["users_unsubscribed_text"]="Nous n'enverrons plus aucun email promotionnel à {{1}}. Votre désabonnement entrera en vigueur dans les 2 prochaines heures."; //{{1}} = email

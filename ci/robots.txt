@@ -1,0 +1,5 @@
+Sitemap: https://www.zipcube.com/sitemap
+
+User-agent: *
+
+Disallow: /ajaxfileuploaded/

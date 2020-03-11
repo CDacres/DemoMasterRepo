@@ -1,0 +1,17 @@
+ul.dropdown-menu li a {
+    cursor: pointer;
+}
+
+div.title {
+    height: 36px;
+    position: relative;
+}
+
+div.title h2 {
+    font-size: 30px;
+    font-weight: 200;
+    letter-spacing: -1px;
+    line-height: 36px;
+    margin: 0;
+    padding: 0 0 0 5px;
+}

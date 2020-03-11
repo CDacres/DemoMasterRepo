@@ -1,0 +1,48 @@
+.select-element {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-right: 8px;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+  -ms-appearance: none;
+  appearance: none;
+  background: white !important;
+  text-indent: 0.01px;
+  text-overflow: "";
+  font-size: 14px;
+}
+
+.select:before {
+  content: '\25bc';
+  position: absolute;
+  pointer-events: none;
+  color: #82888a;
+  top: 0;
+  bottom: 1px;
+  padding-top: 1em;
+  line-height: 1;
+  z-index: 1;
+  right: 0;
+  width: 2em;
+  text-align: center;
+  transform: scale(0.84, 0.42);
+  -webkit-transform: scale(0.84, 0.42);
+  -moz-transform: scale(0.84, 0.42);
+  -ms-transform: scale(0.84, 0.42);
+  -o-transform: scale(0.84, 0.42);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=0.84, M12=0, M21=0, M22=0.42, SizingMethod='auto expand')";
+  filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.84, M12=0, M21=0, M22=0.42, SizingMethod='auto expand');
+}
+
+.select {
+    appearance:none;
+    -moz-appearance:none;
+    -webkit-appearance:none;
+    position: relative;
+    vertical-align: bottom;
+    display: block;
+    padding: 8px 10px;
+    font-family: inherit;
+    /*line-height: 12px;*/
+}

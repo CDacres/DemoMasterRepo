@@ -1,0 +1,2 @@
+<?php
+echo '<div class="hubspot_modal"><iframe src="https://app.hubspot.com/sales/' . config_item('hubspot_portal_id') . '/contact/' . $vId . '?interaction=' . $interaction . '" frameborder="0" allowtransparency="true"></iframe></div>';

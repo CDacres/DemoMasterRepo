@@ -1,0 +1,19 @@
+#submenu {
+    margin: 0;
+    padding: 0;
+}
+
+#submenu li {
+    border-right: 1px solid #b0e2ff;
+    display: inline;
+}
+
+#submenu li a {
+    color: #acacac;
+    padding: 0 15px;
+    text-decoration: none;
+}
+
+#submenu li a:hover, #submenu li.active a {
+    color: #00b0ff;
+}

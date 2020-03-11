@@ -1,0 +1,1 @@
+<div class="contact_modal_wrapper"><?php echo $this->load->view(THEME_FOLDER . '/venues/snippets/contact_details', ['data' => $venue], true);?></div>

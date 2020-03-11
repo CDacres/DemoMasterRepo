@@ -1,0 +1,104 @@
+/*body {
+  overflow: hidden;
+}*/
+
+.fc-resource-area .fc-icon {
+  color: #00b9ff;
+  font-size: 1em;
+  padding: 0.5em;
+}
+
+.fc-state-default {
+  border-top-right-radius: 2px !important;
+  border-top-left-radius: 2px !important;
+  border-bottom-right-radius: 2px !important;
+  border-bottom-left-radius: 2px !important;
+  color: #33d1ff !important;
+  border: 1px solid #33d1ff;
+  background: #FFF;
+  text-transform: uppercase;
+}
+
+.fc-state-default:disabled {
+  border-top-right-radius: 2px !important;
+  border-top-left-radius: 2px !important;
+  border-bottom-right-radius: 2px !important;
+  border-bottom-left-radius: 2px !important;
+  color: #9daab3 !important;
+  border: 1px solid #9daab3;
+  background: #FFF;
+}
+
+.fc-state-default:hover {
+  color: #00a2d1 !important;
+  border-color: #00a2d1;
+}
+
+.fc-corner-right:hover {
+  color: #00a2d1 !important;
+  border-color: #00a2d1;
+}
+
+.fc-corner-left:hover {
+  color: #00a2d1 !important;
+  border-color: #00a2d1;
+}
+
+.fc-state-default:active {
+  color: #00a2d1 !important;
+  border-color: #00a2d1;
+}
+
+.fc-corner-right:active {
+  color: #00a2d1 !important;
+  border-color: #00a2d1;
+}
+
+.fc-corner-left:active {
+  color: #00a2d1 !important;
+  border-color: #00a2d1;
+}
+
+.fc-corner-left {
+  color: #33d1ff !important;
+  border: 1px solid #33d1ff;
+  background: #FFF;
+  border-top-left-radius: 2px !important;
+  border-bottom-left-radius: 2px !important;
+}
+
+.fc-corner-right {
+  border-top-right-radius: 2px !important;
+  border-bottom-right-radius: 2px !important;
+  color: #33d1ff !important;
+  border: 1px solid #33d1ff;
+  background: #FFF;
+}
+
+.panel>.table-responsive {
+  max-height: 84vh;
+}
+
+.modal .btn-group {
+  padding: 0 0 1em 0;
+}
+
+#add_comment input {
+  width: 100%;
+}
+
+#comments::-webkit-input-placeholder {
+   color: #ccc;
+}
+
+#comments:-moz-placeholder { /* Firefox 18- */
+   color: #ccc;
+}
+
+#comments::-moz-placeholder {  /* Firefox 19+ */
+   color: #ccc;
+}
+
+#comments:-ms-input-placeholder {
+   color: #ccc;
+}

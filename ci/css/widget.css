@@ -1,0 +1,124 @@
+@charset "UTF-8";
+
+html {
+    /*height: 100vh;
+    overflow: hidden;*/
+}
+
+body {
+    padding-bottom: 80px;
+}
+
+#header {
+    position: relative;
+    min-width: 100%;
+    padding: 0;
+    background: #fff;
+    box-shadow: none;
+    border-bottom: 1px solid #E6E6E6;
+}
+
+#footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 1040;
+    width: 100%;
+    height: 5em;
+    background: #fff;
+    box-shadow: none;
+    overflow: hidden;
+}
+
+#header .logo > img {
+    width: 130px;
+}
+
+#zc-globalnav .zc-gn-content {
+    text-align: left;
+}
+
+#widget_back_button {
+    margin-right: 10px !important;
+}
+
+#widget_back_button svg {
+    height: 19px;
+    width: 19px;
+    fill: rgb(130, 136, 138);
+    background-color: rgb(255, 255, 255);
+    color: rgb(117, 117, 117);
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(228, 231, 231);
+    border-image: initial;
+    border-radius: 3px;
+    padding: 6px 9px !important;
+    vertical-align: middle;
+}
+
+@media only screen and (max-width: 767px) {
+    #zc-globalnav .zc-gn-content {
+        padding: 0 0 0 22px;
+        position: relative;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+}
+
+#zc-globalnav #widget_nav {
+    font-size: 32px;
+    margin-top: -9px;
+    display: block;
+    color: rgb(72,72,72);
+    font-weight: 600;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+#client_logo {
+    width: 90px;
+}
+
+#footer .logo-wrapper {
+    border-top: 1px solid #E6E6E6;
+}
+
+#footer .login-wrapper {
+    height: 100%;
+    /*background-color: #ff5a5f;*/
+    padding: 5px;
+}
+
+a.logo, a.logo:active, a.logo:focus, a.logo:hover {
+    text-decoration: none;
+}
+
+#powered_by {
+    display: inline;
+    color: black;
+    font-size: 1em;
+    margin-right: 1em;
+}
+
+#zipcube_logo {
+    display: inline;
+    width: 160px;
+}
+
+#client_locations {
+    margin: 2em;
+    max-width: 200px;
+}
+
+.map {
+    top: 50px;
+    bottom: 70px;
+}
+
+#sidebar {
+    top: 50px;
+    bottom: 70px;
+}

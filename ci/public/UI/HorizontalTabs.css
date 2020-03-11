@@ -1,0 +1,59 @@
+/* --------------------------------------------
+        Horizontal Tabs Component
+-------------------------------------------- */
+.horizontal-tabs {
+  margin-top: 32px;
+  border-bottom: 1px solid #e4e4e4; }
+  .horizontal-tabs .tabs {
+    border-bottom: none;
+    position: relative; }
+  .horizontal-tabs .container-relative {
+    position: relative; }
+  .horizontal-tabs .container-wrapper--no-horizontal-scroll {
+    height: 100%;
+    width: 100%;
+    overflow-y: hidden; }
+  .horizontal-tabs .container-outer--no-horizontal-scroll {
+    -webkit-overflow-scrolling: touch;
+    height: 100%;
+    width: 100%;
+    overflow-y: hidden; }
+  .horizontal-tabs .container-inner--horizontal-scroll {
+    height: 100%;
+    overflow-x: scroll;
+    overflow-y: auto;
+    white-space: nowrap; }
+  .horizontal-tabs .text {
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+    line-height: 16px;
+    letter-spacing: 0.4px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    color: #484848;
+    background-color: transparent;
+    border-width: 0px;
+    border-bottom: 2px solid transparent;
+    bottom: -1px;
+    cursor: pointer;
+    display: inline-block;
+    margin: 0 16px 0 0;
+    padding-left: 0px;
+    padding-right: 0px;
+    text-decoration: none;
+    font-weight: 700; }
+    .horizontal-tabs .text.active, .horizontal-tabs .text:hover {
+      color: #00c8ff;
+      border-bottom: 2px solid #00c8ff;
+      -webkit-transition-property: color;
+      -moz-transition-property: color;
+      transition-property: color;
+      -webkit-transition-duration: 300ms;
+      transition-duration: 300ms;
+      -webkit-transition-timing-function: ease-out;
+      transition-timing-function: ease-out; }
+    @media (min-width: 744px) {
+      .horizontal-tabs .text {
+        margin: 0 24px 0 0; } }
+    @media (min-width: 1128px) {
+      .horizontal-tabs .text {
+        margin: 0 32px 0 0; } }

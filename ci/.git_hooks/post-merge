@@ -1,0 +1,32 @@
+#!/bin/bash
+
+changed_files="$(git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD)"
+
+check_run() {
+  echo "$changed_files" | grep -E --quiet "$1" && eval "$2"
+}
+
+echo '========= post-merge hook start ==========='
+
+# `yarn install` if the `package.json` file gets changed
+# to update all the node dependencies deleting the unused packages (not listed into the  `package.json` file)
+
+cd ~/api
+
+git pull
+
+cd ~/litics
+
+git pull
+
+cd ~/zip
+
+check_run package.json "yarn install"
+
+check_run composer.json "composer install"
+
+check_run ".js|.jsx|.ts|.tsx" "yarn restart_node"
+
+yarn lang
+
+echo '======== post-merge hook complete ========='

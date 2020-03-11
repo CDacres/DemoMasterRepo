@@ -1,0 +1,25 @@
+.deal-label {
+    display: inline;
+    padding: 3px 6px;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+    font-weight: 700;
+    line-height: 1.5;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    border-radius: .25em;
+    text-shadow: none;
+}
+
+.highly-rated {
+    background-color: #f0ad4e;
+}
+
+.regularly-booked {
+    background-color: #5cb85c;
+}
+
+.excellent-deal {
+    background-color: #d9534f;
+}

@@ -1,0 +1,27 @@
+#pagefooter {
+    background-color: #FFF;
+}
+
+.page-home .billboard.mainboard {
+    height: calc(100vh - 468px);
+    min-height: 475px;
+}
+
+.search-area {
+    top: 35%;
+}
+
+.page-home .billboard .gallery-content h1 {
+    font-size: 80px;
+}
+
+.search-area h2 {
+    font-size: 28px;
+}
+
+@media (min-width: 1200px) {
+    .container {
+        width: 1080px;
+        padding: 0px;
+    }
+}

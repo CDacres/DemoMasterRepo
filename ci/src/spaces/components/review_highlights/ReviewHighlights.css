@@ -1,0 +1,17 @@
+.review-highlights {
+    top: 800px;
+    width: 304px;
+    /*background: transparent;*/
+    /*border: 1px solid #d6d5d4;*/
+    /*border-radius: 2px;*/
+}
+.review-highlights .review-list-container {
+    padding: 10px;
+    color: #05377E;
+}
+.review-highlights .review-list-container h4 {
+    color: #05377E;
+}
+.review-highlights .review-list-container i {
+    margin-right: 10px;
+}

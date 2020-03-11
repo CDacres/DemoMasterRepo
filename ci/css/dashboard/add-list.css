@@ -1,0 +1,655 @@
+/*CSS for add list1*/
+.fieldset .btn {
+    padding: 20px 27px;
+}
+.panel-medium {
+    background: #f5f5f5;
+}
+.bg-grey {
+	background: #F5F5F5
+}
+.bg-white {
+	background: #FFF
+}
+
+.trust-box {
+	padding: 20px;
+}
+.panel {
+	box-shadow: none
+}
+
+.icon-list {
+	font-size: 40px;
+	color: #64BBF2
+}
+
+/***********************
+CSS for add list2
+************************/
+
+/* body {
+  padding: 100px 0 0 0;
+} */
+
+.dashboard-page-wrapper {
+    padding: 100px 22px 0 22px;
+}
+
+#dash_head .venue_picker {
+  padding: 12px 0 10px 10px;
+  display: inline-block;
+  width: 290px;
+  min-height: 50px;
+  border-right: 1px solid #0F1421;
+}
+
+#dash_head .closebtn {
+  padding-top: 5px;
+}
+
+#dash_head .preview_link {
+  display: inline-block;
+  padding: 8px 40px 0;
+  float: right;
+}
+
+#dash_head .breadcrumb {
+  display: inline-block;
+  margin: 0;
+}
+
+#dash_head .breadcrumb .active {
+  color: white;
+}
+
+#dash_head .venue_picker .btn-block {
+  width: 96%;
+}
+
+#dash_head .venue_picker .btn.btn-default {
+  background: transparent;
+}
+
+#dash_head .btn.btn-default {
+    border: 1px solid #33d1ff;
+    text-align: center;
+}
+
+#dash_head .breadcrumb {
+    background-color: transparent;
+}
+
+#dash_head .btn-sm {
+    padding: 5px 10px;
+    line-height: 1.5;
+    min-width: 102px;
+}
+
+#dash_head .listing_menu_container {
+  display: inline-block;
+  padding: 10px 5px 10px 35px;
+  width: 100%;
+  width: 736px;
+}
+
+.listing_menu_container #edit_listing_close {
+  background: transparent;
+}
+
+/*subnav*/
+.manage-listing-header {
+    width: 100%;
+    position: relative;
+}
+.ml-header-subnav {
+    padding-left: 25px;
+    padding-right: 25px;
+}
+.subnav {
+    position: relative;
+    background-color: #565a5c;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.subnav:before, .subnav:after {
+    content: " ";
+    display: table;
+}
+.subnav-list {
+    margin-left: -14px;
+    margin-right: -14px;
+}
+.list-layout, .subnav-list, .sidenav-list {
+    margin-bottom: 0;
+}
+.list-unstyled, .list-layout, .subnav-list, .sidenav-list {
+    padding-left: 0;
+    list-style: none;
+}
+.show-if-collapsed-nav {
+    display: none;
+}
+.ml-header-subnav .show-collapsed-nav-link {
+    background: #3d4042;
+    border-right: 1px solid #313334;
+    margin-left: -10px;
+}
+.subnav-item {
+    color: #cacccd;
+}
+.subnav-text, .subnav-item {
+    position: relative;
+    float: left;
+    padding: 10px 14px;
+    color: #fff;
+}
+.subnav {
+    position: relative;
+    background-color: #565a5c;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.subnav:after {
+    clear: both;
+}
+.text-normal, a.text-normal, a.text-normal:hover, a.text-normal:focus {
+    color: inherit;
+}
+.subnav-item .icon:first-child {
+    margin-right: 5px;
+    position: relative;
+}
+.subnav-list .glyphicon {
+    font-size: 16px;
+    position: absolute;
+    top: 3px;
+}
+/*listing nav*/
+
+.listing-nav-sections {
+    height: 70%;
+    height: calc(100% - 109px);
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 25px 0;
+}
+.never-listed .pre-listed {
+    display: block;
+}
+.section-header {
+    padding-left: 20px;
+    color: #b2b5b7;
+}
+.manage-listing-nav {
+    height: 100vh;
+    display: inline-block;
+    position: fixed;
+    /*top: 40px;*/
+    left: 0;
+    -webkit-transform: translateZ(0);
+    z-index: 10;
+    background: #f8f8f8;
+    width: 290px;
+    border-right: none;
+    /*margin-top: 44px;*/
+    margin: 0;
+}
+.nav-sections {
+    height: 70%;
+    height: calc(100% - 109px);
+    overflow-x: hidden;
+    overflow-y: auto;
+    margin-top: 4px;
+}
+
+.asset_title {
+    width: 100%;
+    height: 60px;
+    padding: 10px 10px;
+}
+
+/*.nav-sections .dropdown-menu {
+  top: 50px;
+  left: 60px;
+}*/
+
+.venue_picker .dropdown-menu {
+  left: 10px;
+}
+
+.room_container {
+  padding: 10px;
+}
+
+.room_row {
+  height: 50px;
+}
+
+.asset_title a {
+    color: white;
+    text-decoration: none;
+}
+
+.nav-sections .content {
+    float: left;
+    width: 100%;
+}
+
+.nav-active {
+    background-color: #edefed;
+    font-weight: bold;
+}
+.nav-item {
+    position: relative;
+}
+.nav-item a {
+    padding: 9px 0 9px 10px;
+    display: block;
+    font-size: 14px;
+    color: #6d7275;
+}
+
+.sub_room_content .nav-item a {
+    padding: 9px 0 9px 0;
+    display: block;
+    font-size: 14px;
+    color: #6d7275;
+}
+
+.room-content {
+    padding: 10px;
+    height: 40px;
+    clear: both;
+}
+
+.sub_room_content {
+    padding: 9px 0 9px 10px;
+}
+
+.va-container {
+    display: table;
+    position: relative;
+}
+.row-space-5 {
+    margin-bottom: 31.25px;
+}
+.nav-item-name {
+    padding-right: 20px;
+}
+.va-top, .va-middle, .va-bottom {
+    display: table-cell;
+}
+.va-middle {
+    vertical-align: middle;
+}
+.nav-item .icon, .nav-item .dot {
+    margin-right: 10px;
+    font-size: 20px;
+    top: -2px;
+    color: #46D633;
+}
+.text-babu, .icon-babu {
+    color: #00d1c1;
+}
+
+.room-content .badge {
+  background-color: #FFC020;
+}
+
+.tooltip {
+  max-width: 160px;
+  z-index: 9999;
+}
+
+.room_container .badge {
+  background-color: #FFC020;
+  margin-right: 10px;
+}
+
+.panel-body .remove-padding {
+  padding: 0;
+}
+
+.room_row .badge {
+  background-color: #FFC020;
+  margin-right: 0;
+}
+
+.room_container .panel-title {
+  font-size: 14px;
+}
+
+/*form*/
+ .manage-listing-content-container {
+    height: 100%;
+    width: 100vw;
+    padding-left: 290px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: relative;
+    z-index: 1;
+}
+
+.manage-listing-row-container {
+    font-size: 16px;
+}
+.manage-listing-content-wrapper, .manage-listing-help-wrapper {
+    position: relative;
+    height: 100%;
+}
+.manage-listing-content {
+    background-color: #fff;
+    padding: 15px 40px;
+    float: none;
+    min-height: 100vh;
+    width: 736px;
+}
+
+.manage-listing-help {
+    height: 100%;
+    padding: 0 40px;
+    position: absolute;
+    left: 754px;
+    top: 0;
+    width: 390px;
+    z-index: 1;
+    -webkit-transform: translateZ(0);
+    -webkit-transition: opacity 0.2s ease-out;
+    -moz-transition: opacity 0.2s ease-out;
+    -o-transition: opacity 0.2s ease-out;
+    transition: opacity 0.2s ease-out;
+}
+.manage-listing-help-panel {
+    position: relative;
+}
+.manage-listing-row-container {
+    font-size: 16px;
+    position: relative;
+    zoom: 1;
+}
+
+
+/* form stuff */
+input, button, select, textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.select {
+    position: relative;
+    vertical-align: bottom;
+}
+
+.select select {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-right: 2em;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+    -ms-appearance: none;
+    appearance: none;
+    background: white\0 !important;
+}
+
+.select select::-ms-expand {
+    display: none;
+}
+
+[type="text"], [type="password"], [type="search"], [type="email"], [type="url"], [type="number"], [type="tel"], textarea, select, .input-prefix, .input-suffix {
+    display: block;
+    padding: 8px 10px;
+    width: 100%;
+}
+.input-large {
+    font-size: 16px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.manage-listing-content input[type=text]:focus, .manage-listing-content textarea:focus, .manage-listing-content select:focus {
+    border-color: #00d1c1;
+    outline: 1px solid #00d1c1;
+}
+.select:before {
+    content: '\25bc';
+    position: absolute;
+    pointer-events: none;
+    color: #82888a;
+    top: 0;
+    bottom: 1px;
+    padding-top: 0.7em;
+    line-height: 1;
+    right: 0;
+    width: 2em;
+    text-align: center;
+    transform: scale(0.84, 0.42);
+    -webkit-transform: scale(0.84, 0.42);
+    -moz-transform: scale(0.84, 0.42);
+    -ms-transform: scale(0.84, 0.42);
+    -o-transform: scale(0.84, 0.42);
+    -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=0.84, M12=0, M21=0, M22=0.42, SizingMethod='auto expand')";
+    filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.84, M12=0, M21=0, M22=0.42, SizingMethod='auto expand');
+}
+label, input, textarea, select, input[type="radio"], input[type="checkbox"], .input-prefix, .input-suffix {
+    line-height: normal;
+}
+
+.amenity-label {
+    margin-right: 0px;
+        padding-top: 3px;
+}
+
+.saving-progress {
+    float: right;
+    margin-top: -8px;
+    margin-bottom: -32px;
+    color: #3fb34f;
+}
+
+
+
+.room-config-radio-container .btn {
+  min-width: 120px;
+  min-height: 114px;
+}
+
+.room-config-radio-container {
+    display: inline-block;
+    text-align: center;
+    margin-bottom: 0.3em;
+}
+
+.room-config-radio-container .btn {
+    min-width: 120px;
+}
+
+.btn.btn-default {
+    color: #33d1ff !important;
+    border: 1px solid #33d1ff;
+    background: #FFF;
+}
+
+.room-config-radio-container > label {
+    margin: 0 auto;
+}
+
+
+
+/*add Photo*/
+.photo-encourage #photo-uploader {
+    padding-left: 46px;
+    padding-right: 46px;
+}
+.photo-encourage .btn-large {
+    margin: 5px;
+}
+
+.photo-item {
+    box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.photo-drag-target {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    cursor: pointer;
+}
+.photo-size {
+    width: 100%;
+    height: 136px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.photo-space {
+    padding: 20px;
+}
+.empty-photo-frame {
+    cursor: pointer;
+    padding: 62px 10px 52px;
+}
+.empty-photo-image {
+    height: 55px;
+    width: 55px;
+    margin: 12px auto 12px;
+}
+.media-photo-block {
+    display: block;
+}
+.img-responsive-height {
+    width: auto;
+    height: 100%;
+}
+img {
+    vertical-align: middle;
+}
+.icon-upload-picture {
+    font-size: 55px;
+}
+.icon-lightgrey {
+	color: lightgrey;
+}
+
+
+/***********************
+/CSS for add list2
+************************/
+
+
+
+html {
+    min-height: 100%;
+}
+.fill {
+    position: relative;
+    display: inline-block;
+    z-index: 2;
+}
+html.oldie .fill  { height: 850px }
+@media only screen and (min-width:1442px) {
+	.fill { min-height: 820px }
+}
+@media only screen and (max-width:1024px) {
+	.fill {
+    /*height: auto; */
+    min-height: 820px
+  }
+  .manage-listing-content {
+      padding: 15px 40px 350px 40px;
+  }
+  .manage-listing-content {
+    width: 100%;
+  }
+}
+@media only screen and (max-width:768px) and (max-device-width:768px) {
+	.fill {
+    min-height: 240px;
+  }
+  .manage-listing-content {
+    padding: 15px 40px 100px 40px;
+  }
+}
+@media only screen and (max-width:735px) and (max-device-width:768px) and (orientation:landscape) and (max-height:414px) {
+	.fill { height: 68% }
+}
+@media only screen and (max-width:735px) and (max-device-width:768px) {
+	.fill { min-height: 740px; height: auto }
+}
+
+
+
+
+
+
+/*vertical align fro opening hours table*/
+.table-hours > tbody > tr > td, .table-hours > tbody > tr > th {
+     vertical-align: middle;
+     height: 50px
+}
+.table-hours > tbody > tr > td > .label-large {
+     padding:0;
+}
+
+/*/vertical align fro opening hours table*/
+
+a[disabled] {
+    pointer-events: none;
+    color: #b2b5b7;
+}
+
+td.hourselect div.select, td.hourselect div.check {
+    float: left;
+    padding-left: 5px;
+}
+
+td.hourselect div.select {
+    width: 45%;
+    padding-top: 2px;
+}
+
+td.hourselect div.check {
+    width: 10%;
+}
+
+td.check {
+    text-align: center;
+}
+
+#custom_cancellation input {
+    width: 72px;
+    display: inline;
+}
+
+/* iPad landscape */
+@media only screen
+    and (min-device-width:481px)
+    and (max-device-width:768px)
+    and (orientation:landscape) {
+
+    .listing_menu_container {
+      width: 688px;
+    }
+
+}
+/* iPad portrait */
+@media only screen
+    and (min-device-width:481px)
+    and (max-device-width:768px)
+    and (orientation:portrait) {
+
+    .listing_menu_container {
+      width: 456px;
+    }
+
+}

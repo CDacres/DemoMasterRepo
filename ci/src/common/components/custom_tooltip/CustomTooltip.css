@@ -1,0 +1,13 @@
+.custom-tooltip-layout {
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+    z-index: 333;
+}
+
+.custom-tooltip-layout .tooltip-inner {
+    text-align: left;
+    width: 250px;
+    max-width: 300px;
+    padding: 6px 8px;
+}

@@ -1,0 +1,44 @@
+.urgency_notification__stripe {
+    margin-bottom: 10px;
+}
+
+#rooms .urgency_notification__stripe {
+    margin-bottom: 20px;
+}
+
+.venue-css .urgency_notification__stripe:first-child {
+    margin-top: 10px;
+}
+
+.urgency_notification__stripe .urgency_notification__stripe__inner {
+    padding: 10px;
+}
+
+.urgency_notification__stripe .urgency_notification__stripe__inner i {
+    float: left;
+    margin-right: 10px;
+    font-size: 20px;
+    font-style: normal;
+}
+
+.urgency_notification__stripe .urgency_message__red {
+    background-color: #ffe6e6;
+    border-bottom: solid 4px #ffa9a9;
+    color: #e21111;
+}
+
+.urgency_notification__stripe .urgency_message__green {
+    background-color: #e2f3e0;
+    border-bottom: solid 4px #d3edd1;
+    color: #077810;
+}
+
+.urgency_notification__stripe .urgency_message__yellow {
+    background-color: #FFF59D;
+    border-bottom: solid 4px #FFF59D;
+    color: #000;
+}
+
+.urgency_notification__stripe .urgency_notification__stripe__inner p {
+    margin: 0;
+}

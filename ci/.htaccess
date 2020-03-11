@@ -1,0 +1,14 @@
+Options -Indexes
+RewriteEngine on
+RedirectMatch 404 /\.git
+#REWRITING RULES FOR SUBDOMAIN BLOG
+RewriteRule ^(blog)($|/) - [L]
+#REWRITING RULES ROBOT AND WWW
+RewriteCond $1 !^(index\.php|resources|robots\.txt)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php/$1 [L,QSA]
+RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} !-f
+RewriteRule \.(gif|jpe?g|png|bmp) /images/no_image.jpg [NC,L]
+RewriteCond %{THE_REQUEST} ^GET.*index\.php
+RewriteRule (.*?)index\.php/*(.*) /$1$2 [R=301,L]

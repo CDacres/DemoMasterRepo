@@ -1,0 +1,242 @@
+h3 {
+    margin-top: 0;
+}
+
+.navbar {
+    margin-bottom: 0;
+}
+
+.jumbotron {
+    padding: 30px 15px 15px 15px;
+}
+
+.jumbotron p {
+    margin-bottom: 0;
+}
+
+.page-container {
+    padding: 0;
+}
+
+.breadcrumb {
+    font-size: 21px;
+}
+
+.admin-button {
+    margin: 1em 1em 0 0;
+}
+
+.btn-group .admin-button {
+    margin: 1em 0 0 0;
+}
+
+#collapseInstructions ol {
+    padding-left: 15px;
+}
+
+.hubspot_link {
+    margin-left: 5px;
+}
+
+.hubspot_link img {
+    margin-top: -5px;
+}
+
+.navbar-default .navbar-nav>.active>a,
+.navbar-default .navbar-nav>.active>a:focus,
+.navbar-default .navbar-nav>.active>a:hover {
+    color: #555;
+    border: none;
+    background-color: transparent;
+}
+
+.navbar-nav>.active>a:before {
+    position: absolute;
+    content: '';
+    bottom: 0;
+    left: 14px;
+    right: 14px;
+    height: 4px;
+    background: #cacccd;
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+input[type="password"],
+input[type="button"],
+input[type="date"],
+select {
+    height: 36px;
+}
+
+.switchery {
+    top: auto !important;
+    right: auto !important;
+    position: absolute !important;
+}
+
+.exception_table_display {
+    color: #33d1ff !important;
+    cursor: pointer;
+}
+
+#calendar-icon.non-modal {
+    left: 11px;
+}
+
+.sidebar {
+    position: fixed !important;
+    width: 450px;
+    padding: 20px;
+    background-color: #FFF;
+    z-index: 9998 !important;
+}
+
+.sidebar__overlay {
+    display: none;
+}
+
+.ant-select-dropdown {
+    z-index: 9999 !important;
+}
+
+.token_search__error,
+.ajax__error {
+    padding: 5px 0;
+    color: #f7462b;
+}
+
+.token_search__success,
+.ajax__success {
+    padding: 5px 0;
+    color: #46d633;
+}
+
+.pac-container {
+    z-index: 9999 !important;
+}
+
+.enquiries_table__td {
+    vertical-align: top;
+}
+
+.set_enquiry_status {
+    font-size: 30px;
+}
+
+.agree_container {
+    padding: 5px 0;
+}
+
+.agree_label {
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+.message_container {
+    max-height: 160px;
+    overflow-y: auto;
+}
+
+.inline-select {
+    display: inline-block;
+}
+
+.enquiries_table__td.enquiries_table__venue_td {
+    padding-left: 10px;
+}
+
+.enquiry_input_save {
+    padding: 0 0 0 10px;
+}
+
+.enquiry_input_cell {
+    padding: 10px 0;
+}
+
+.administrator-table thead.stuck {
+    position: fixed;
+    top: 0;
+    background-color: #fff;
+    z-index: 5;
+}
+
+.administrator-table th div.order {
+    display: inline-block;
+    padding: 0px 2px;
+}
+
+.success-text {
+    color: #46d633;
+}
+
+.danger-text {
+    color: #E21111;
+}
+
+.bold-text {
+    font-weight: bold;
+}
+
+tr.zc_entity_reservations td:first-child {
+    text-indent: 25px;
+}
+
+.venue-room-field-title {
+    text-align: center;
+}
+
+.venue-room {
+    max-height: 70px;
+    height: 70px;
+}
+
+.venue-room-image {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-size: cover;
+    background-position: center;
+}
+
+.venue-room-title {
+    overflow: hidden;
+}
+
+.venue-box {
+    text-align: center;
+    color: white;
+    border-radius: 3px;
+    padding: 1px 2px;
+}
+
+.venue-sponsor-box {
+    background-color: #337ab7;
+    border-color: #337ab7;
+}
+
+.venue-approve-box {
+    background-color: #46d633;
+    border-color: #46d633;
+}
+
+.website_icon {
+    fill: #64dcff;
+    width: 15px;
+    height: 15px;
+    vertical-align: middle;
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 736px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1) {
+    .nav>li {
+        display: inline-block;
+    }
+}
+
+#landing_page_list ul, #linked_tag_label_list ul {
+    padding-left: 40px;
+    margin-bottom: 10px;
+}

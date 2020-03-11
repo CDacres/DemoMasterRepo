@@ -1,0 +1,20 @@
+version: '3.1'
+
+services:
+  zipcube:
+    image: "apache_php56"
+    working_dir: /var/www/html
+    volumes:
+      - ./:/var/www/html
+    ports:
+      - "80:80"
+  mysql:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: live
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./docker_images/mysql/data:/docker-entrypoint-initdb.d

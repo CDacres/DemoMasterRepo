@@ -1,0 +1,43 @@
+.star_rating {
+    display: inline-block;
+    position: relative;
+    color: #F1C73B;
+    z-index: 2;
+}
+
+.rating {
+    display: inline-block;
+    unicode-bidi: bidi-override;
+    direction: rtl;
+}
+
+.star {
+    display: inline-block;
+    position: relative;
+    width: 14px;
+    color: #F1C73B;
+}
+
+.star {
+    z-index: 3;
+}
+
+.star:last-child {
+    margin-right: 0;
+}
+
+.filled-star:before,
+.filled-star ~ .filled-star:before {
+    content: "\2605";
+    position: absolute;
+    color: #F1C73B;
+}
+
+.half-star:before,
+.half-star ~ .half-star:before {
+    content: '\2605';
+    position: absolute;
+    color: #F1C73B;
+    width: 0.5em;
+    overflow: hidden;
+}

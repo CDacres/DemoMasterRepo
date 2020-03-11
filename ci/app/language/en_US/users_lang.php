@@ -1,0 +1,63 @@
+<?php
+$lang["users_name"]="Name";
+$lang["users_first_name"]="First name";
+$lang["users_last_name"]="Last name";
+$lang["users_email"]="Email";
+$lang["users_email_address"]="Email address";
+$lang["users_phone_number"]="Phone number";
+$lang["users_form_error_first_name"]="Please enter a valid first name";
+$lang["users_form_error_last_name"]="Please enter a valid last name";
+$lang["users_form_error_names"]="Please enter a valid first name and last name";
+$lang["users_form_error_email"]="Please enter a valid email address";
+$lang["users_form_error_phone"]="Please enter a valid contact number";
+$lang["users_form_error_name_email"]="Please ensure the names and email addresses are correct.";
+$lang["users_password"]="Password";
+$lang["users_confirm_password"]="Confirm password";
+$lang["users_set_password"]="Set password";
+$lang["users_set_password_title"]="Set a new password";
+$lang["users_set_password_info"]="To access your account to download invoices, leave reviews and have the system remember you for next time please set up your password!";
+$lang["users_set_password_success"]="<b>You are now logged in, to continue to find meeting rooms, please start your search <a href='/'>here</a>.</b>";
+$lang["users_not_this_time"]="Not this time";
+$lang["users_register_button"]="Register";
+$lang["users_already_registered"]="Already registered?";
+$lang["users_log_in_here"]="Log in here";
+$lang["users_forgot_password"]="Forgot password?";
+$lang["users_forgot_your_password"]="Forgot your password?";
+$lang["users_request_password"]="Request Password";
+$lang["users_reset_password"]="Reset Password";
+$lang["users_auto_password"]="Auto-generate password";
+$lang["users_create_password"]="Let me create the password";
+$lang["users_not_registered_yet"]="Not registered yet?";
+$lang["users_sign_up_here"]="Sign up here";
+$lang["users_signup_terms"]="By signing up, I agree to Zipcube's <a href='/:country_url/legal' target='_blank'>Terms of Use</a> and <a href='/:country_url/legal#PrivacyPolicy' target='_blank'>Privacy Policy</a>";
+$lang["users_create_account"]="Create account";
+$lang["users_create_new_account"]="Create new account";
+$lang["users_request"]="Request";
+$lang["users_request_new_password"]="Request a new password";
+$lang["users_request_new_password_text"]="Enter the email address associated with your account and we'll email you a link to reset your password.";
+$lang["users_request_reset_success"]="An email has been sent to your email with instructions with how to activate your new password.";
+$lang["users_save_password_heading"]="{{1}}, one last step..."; //{{1}} = user
+$lang["users_save_password_subheading"]="If you're happy giving us a few details now we'll store them safely, to make booking easier next time. You'll also get access to your invoices, the ability to cancel, invite attendees and more.";
+$lang["users_already_account"]="Already have an account?";
+$lang["users_no_account"]="No account?";
+$lang["users_get_started"]="Let's get started";
+$lang["users_find"]="Find your<br>perfect space";
+$lang["users_book_with"]="Book with Zipcube";
+$lang["users_book_power"]="Powerful, simple search";
+$lang["users_book_best"]="Best price guaranteed";
+$lang["users_remember_me"]="Remember me";
+$lang["users_login_with_facebook"]="Log in with Facebook";
+$lang["users_login_with_google"]="Log in with Google";
+$lang["users_login_with_linkedin"]="Log in with LinkedIn";
+$lang["users_login_signing_in"]="Signing in as {{1}}"; //{{1}} = user
+$lang["users_signup_with_email"]="Sign up with Email";
+$lang["users_already_have_account"]="Already have a Zipcube account?";
+$lang["users_signup_with_facebook"]="Sign up with Facebook";
+$lang["users_signup_with_google"]="Sign up with Google";
+$lang["users_signup_with_linkedin"]="Sign up with LinkedIn";
+$lang["users_unsubscribe_title"]="You're about to unsubscribe from Zipcube emails!";
+$lang["users_unsubscribe"]="Click below to unsubscribe from promotions, updates and general emails.";
+$lang["users_notifications"]="If you prefer to tweak your email preferences, you can do so in your <a href='/{{1}}/dashboard/subscribe'>account</a>."; //{{1}} = country_url
+$lang["users_unsubscribe_me"]="Unsubscribe Me";
+$lang["users_unsubscribed"]="You've been unsubscribed";
+$lang["users_unsubscribed_text"]="We won't send any promotional emails to {{1}}. Your subscription change will take effect within 2 hours."; //{{1}} = email

@@ -1,0 +1,1 @@
+<div><?php echo $email_status;?></div>

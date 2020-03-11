@@ -1,0 +1,324 @@
+.chapternav {
+    background: rgba(242,242,242,0.7);
+    overflow: hidden;
+    padding: 0;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    position: relative;
+    width: 100%;
+    height: 86px;
+    z-index: 1020;
+}
+.chapternav a {
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+    color: #333;
+}
+.chapternav a:visited {
+    color: #333;
+}
+.chapternav a:active {
+    color: #333;
+}
+.chapternav a:hover {
+    color: #00b9ff;
+}
+.subnav-title {
+    font-weight: 600;
+    color: #333;
+}
+@supports (backdrop-filter: initial) {
+    .chapternav {
+        backdrop-filter: saturate(180%) blur(20px);
+        background: rgba(242, 242, 242, 0.6)
+    }
+}
+html.ie8 .chapternav {
+    background: #f6f6f6
+}
+.ac-nav-overlap .chapternav,
+.chapternav-overlap .chapternav {
+    position: absolute;
+    top: 0;
+    left: 0
+}
+.ac-nav-overlap .chapternav {
+    margin-top: 44px
+}
+@media only screen and (max-width: 767px) {
+    .ac-nav-overlap .chapternav {
+        margin-top: 48px
+    }
+}
+.theme-dark .chapternav,
+.chapternav.theme-dark {
+    background: rgba(51, 51, 51, 0.7)
+}
+@supports (backdrop-filter: initial) {
+    .theme-dark .chapternav,
+    .chapternav.theme-dark {
+        background: rgba(51, 51, 51, 0.6)
+    }
+}
+html.ie8 .theme-dark .chapternav,
+html.ie8 .chapternav.theme-dark {
+    background: #707070
+}
+.chapternav-wrapper {
+    margin: 0 auto;
+    height: 100%;
+    max-width: 1024px;
+    padding: 0 22px;
+    position: relative;
+}
+.chapternav-items {
+    list-style: none;
+    margin: 0;
+    max-height: 68px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 50px;
+    white-space: nowrap;
+    -moz-column-count: 7;
+    -moz-column-gap: 10px;
+    -webkit-column-count: 7;
+    -webkit-column-gap: 10px;
+    column-count: 7;
+    column-gap: 10px;
+}
+@media only screen and (max-width: 970px) {
+
+    .chapternav-items {
+        -moz-column-count: 6;
+        -moz-column-gap: 10px;
+        -webkit-column-count: 6;
+        -webkit-column-gap: 10px;
+        column-count: 6;
+        column-gap: 10px;
+        padding-bottom: 0;
+    }
+
+}
+@media only screen and (orientation: landscape) {
+    .chapternav-items {
+        /*padding-bottom: 49px*/
+        padding-bottom: 0;
+    }
+}
+html.touch .chapternav-items {
+    margin: 0;
+    padding-left: 34px;
+    padding-right: 34px
+}
+.chapternav-item {
+    display: block;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.chapternav-item:first-child {
+    margin-left: 0;
+    padding-left: 0
+}
+.chapternav-item:last-child {
+    margin-right: 0;
+    padding-right: 0
+}
+.chapternav-icon {
+    background: center bottom no-repeat;
+    display: block;
+    margin: 0 auto;
+    height: 58px
+}
+.chapternav-label {
+    line-height: 2;
+    font-weight: 400;
+    letter-spacing: 0em;
+    display: block;
+    margin: 0
+}
+@media only screen and (max-width: 767px) {
+    .chapternav-label {
+        font-size: 14px;
+        line-height: 1.85722;
+        font-weight: 400;
+        letter-spacing: 0em
+    }
+}
+.chapternav-new {
+    line-height: 1;
+    font-weight: 400;
+    letter-spacing: 0em;
+    color: #f46c0e;
+    display: block;
+    margin-top: -.75em;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%
+}
+@media only screen and (max-width: 767px) {
+    .chapternav-new {
+        line-height: 1;
+        font-weight: 400;
+        letter-spacing: 0em
+    }
+}
+@media only screen and (max-width: 767px) {
+    .chapternav-new {
+        margin-top: -.5em
+    }
+}
+.chapternav-link {
+    color: #333;
+    display: block;
+    margin-top: 3px;
+    padding: 2px 0;
+    position: relative;
+    z-index: 1
+}
+@media only screen and (max-width: 767px) {
+    .chapternav-link {
+        padding: 1px 0
+    }
+}
+.chapternav-link:hover {
+    color: #0070c9;
+    text-decoration: none
+}
+.chapternav-link:focus {
+    outline-offset: 0
+}
+.chapternav-link.current {
+    color: #333;
+    cursor: default;
+    opacity: .6
+}
+.theme-dark .chapternav-link {
+    color: #fff
+}
+.theme-dark .chapternav-link:hover {
+    color: #6bf
+}
+.theme-dark .chapternav-link.current {
+    color: #fff
+}
+html.touch .chapternav-paddles,
+html.ie8 .chapternav-paddles {
+    display: none
+}
+.chapternav-paddle {
+    font-size: 28px;
+    line-height: 1;
+    font-weight: 200;
+    letter-spacing: 0em;
+    border: 0 solid rgba(102, 102, 102, 0.35);
+    color: #333;
+    opacity: 1;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    text-align: center;
+    width: 33px;
+    -webkit-transition: opacity 150ms ease-out;
+    transition: opacity 150ms ease-out
+}
+.chapternav-paddle:after {
+    -webkit-transition: opacity 200ms linear;
+    transition: opacity 200ms linear
+}
+.chapternav-paddle:disabled {
+    opacity: 0
+}
+.chapternav-paddle:hover:after {
+    opacity: .6
+}
+.chapternav-paddle:focus {
+    outline: none
+}
+.chapternav-paddle:focus:after {
+    outline: 3px solid #c1e0fe;
+    outline: 3px solid rgba(131, 192, 253, 0.5);
+    outline-offset: 4px;
+    opacity: 1
+}
+.chapternav-paddle:focus:after[data-focus-method="mouse"]:not(input):not(textarea):not(select),
+.chapternav-paddle:focus:after[data-focus-method="touch"]:not(input):not(textarea):not(select) {
+    outline: none
+}
+.chapternav-paddle:active {
+    outline: none
+}
+.chapternav-paddle:active:after {
+    outline: none;
+    opacity: .6
+}
+.theme-dark .chapternav-paddle {
+    border-color: rgba(153, 153, 153, 0.35);
+    color: #fff
+}
+.chapternav-paddle-left {
+    border-right-width: 1px;
+    left: 0
+}
+.chapternav-paddle-left:before,
+.chapternav-paddle-left:after {
+    font-family: "Apple Icons";
+    color: inherit;
+    display: inline-block;
+    font-style: normal;
+    font-weight: inherit;
+    font-size: inherit;
+    line-height: 1;
+    text-decoration: underline;
+    position: relative;
+    z-index: 1;
+    alt: ''
+}
+.chapternav-paddle-left:before,
+.chapternav-paddle-left:after {
+    text-decoration: none
+}
+.chapternav-paddle-left:before {
+    display: none
+}
+.chapternav-paddle-left:before,
+.chapternav-paddle-left:after {
+    content: "ï€‚"
+}
+.chapternav-paddle-left:after {
+    margin-left: 8px
+}
+.chapternav-paddle-right {
+    border-left-width: 1px;
+    right: 0
+}
+.chapternav-paddle-right:before,
+.chapternav-paddle-right:after {
+    font-family: "Apple Icons";
+    color: inherit;
+    display: inline-block;
+    font-style: normal;
+    font-weight: inherit;
+    font-size: inherit;
+    line-height: 1;
+    text-decoration: underline;
+    position: relative;
+    z-index: 1;
+    alt: ''
+}
+.chapternav-paddle-right:before,
+.chapternav-paddle-right:after {
+    text-decoration: none
+}
+.chapternav-paddle-right:before {
+    display: none
+}
+.chapternav-paddle-right:before,
+.chapternav-paddle-right:after {
+    content: "ï€„"
+}
+.chapternav-paddle-right:after {
+    margin-right: 8px
+}

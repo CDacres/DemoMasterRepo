@@ -1,0 +1,26 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+/**
+* This is an extension of the core Pagination class designed to allow use of "real" page numbers
+* instead of offset values.  The majority of the code is the original create_links() function
+* but slightly modified.
+*/
+
+//require_once BASEPATH . 'libraries/Pagination.php';
+
+
+Class Config_data extends CI_Config
+{
+
+	function Config_data()
+	{
+		parent::__construct();
+		
+		$CI =& get_instance();
+		
+		define("THEME_FOLDER","templates/blue");
+		
+	} //Controller End
+	
+
+} //Class 
+?>

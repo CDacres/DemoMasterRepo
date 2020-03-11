@@ -1,0 +1,19 @@
+{
+    "presets": ["es2015", "stage-0", "react"],
+    "ignore": "/node_modules",
+    "env": {
+        "server": {
+            "plugins": [
+                [
+                    "css-modules-transform",
+                    {
+                        "generateScopedName": "[hash:8]",
+                        "extensions": [
+                            ".css"
+                        ]
+                    }
+                ]
+            ]
+        }
+    }
+}

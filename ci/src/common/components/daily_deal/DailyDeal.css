@@ -1,0 +1,32 @@
+.daily-deal-container {
+    display: none;
+}
+
+.savings-percentage {
+    font-weight: bold;
+    padding: 0.1em 0.1em 0.1em 0.2em;
+    border: 1px solid #fe0202;
+    color: #fe0202;
+    margin-right: 10px;
+}
+
+.strike-through {
+    color: #fe0202;
+    text-decoration: line-through;
+    margin-right: 10px;
+}
+
+.full-price {
+    font-size: 14px;
+    color: #484848;
+    text-decoration: none;
+}
+
+.new-price {
+    color: #fe0202;
+    vertical-align: bottom;
+}
+
+.price-loader {
+    margin-left: 10px;
+}

@@ -1,0 +1,24 @@
+<div id="header">
+    <input type="checkbox" id="zc-gn-menustate" class="zc-gn-menustate">
+    <nav id="zc-globalnav" class="no-js" role="navigation">
+        <div class="zc-gn-content">
+            <?php
+                if (isset($company_name))
+                {
+            ?>
+                    <span id="widget_nav">
+                        <?php
+                            if (isset($widget_back_link))
+                            {
+                                echo '<a id="widget_back_button" href="' . $widget_back_link . '"><svg viewBox="0 0 1000 1000"><path d="M336.2 274.5l-210.1 210h805.4c13 0 23 10 23 23s-10 23-23 23H126.1l210.1 210.1c11 11 11 21 0 32-5 5-10 7-16 7s-11-2-16-7l-249.1-249c-11-11-11-21 0-32l249.1-249.1c21-21.1 53 10.9 32 32z" /></svg></a>';
+                            }
+                            echo $company_name;
+                        ?>
+                    </span>
+                    <?php
+                }
+                    ?>
+        </div>
+    </nav>
+    <div id="zc-gn-viewport-emitter"></div>
+</div>

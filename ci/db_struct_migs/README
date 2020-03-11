@@ -1,0 +1,4 @@
+If you make a change to the db, do a dump (no data) of the structure and procedures, and place in struct.sql.
+Also work out how best to update the data, and then copy those sql commands into the data_migrations.sql file.
+Git diff will be able to show when the structural changes were introduced and with a low granularity
+of commits it will also be easy to see the associated data migrations for future updates of the live system.

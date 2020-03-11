@@ -1,0 +1,5 @@
+lcd /home/ubuntu/zipcube/dist/public/assets/
+cd zip/dist/public/assets/
+rm *
+put *
+exit

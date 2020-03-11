@@ -1,0 +1,77 @@
+.room-config-container {
+    min-width: 250px;
+    max-width: 50%;
+}
+
+.room-config-radio {
+    display: block;
+    clear: both;
+}
+
+.label {
+    margin: 0 auto;
+}
+
+.btn {
+    min-width: 250px;
+    cursor: pointer;
+}
+
+.btn-block {
+    display: block;
+    white-space: normal;
+    width: 100%
+}
+
+.block-radio-button input[type=radio] {
+    margin: 7px 0 0 0;
+}
+
+.block-radio-button:first-of-type .block-radio-button__panel {
+    -webkit-border-radius: 3px 3px 0 0;
+    -moz-border-radius: 3px 3px 0 0;
+    border-radius: 3px 3px 0 0;
+}
+
+.block-radio-button:last-of-type .block-radio-button__panel {
+    -webkit-border-radius: 0 0 3px 3px;
+    -moz-border-radius: 0 0 3px 3px;
+    border-radius: 0 0 3px 3px;
+}
+
+.block-radio-button:not(:last-of-type) .block-radio-button__panel {
+    border-bottom: 0;
+}
+
+.block-radio-button {
+    margin-top: 0;
+    background-color: #FFF;
+}
+
+.block-radio-button__panel {
+    padding: 10px 15px 10px 10px;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    box-shadow: none;
+    text-transform: none;
+    border: 1px solid #c4c4c4;
+}
+
+.block-radio-button__label {
+    font-size: 14px;
+    line-height: 26px;
+}
+
+.pull-left {
+    float: left;
+}
+
+.pull-right {
+    float: right;
+}
+
+.no-margin-h {
+    margin-left: 0;
+    margin-right: 0;
+}
