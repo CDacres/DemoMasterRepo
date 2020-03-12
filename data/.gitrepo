@@ -6,7 +6,7 @@
 [subrepo]
 	remote = git@github.com:ChristianDacresZipcube/data.git
 	branch = demo
-	commit = dd94b3437d200f8a6bf8c6406d5d17e9757dbe94
-	parent = ae6195f3fc33c741096af8e90245e3219dbca457
+	commit = 8f0f732da823b88829a20e7090922a0244d78b8e
+	parent = 98386ba5b32651efdaad984a49c146e6833f28d2
 	method = merge
 	cmdver = 0.4.1
