@@ -13,7 +13,7 @@ use App\Types\ProductCategory;
 class ImposeAssetNameTest extends TestCase
 {
   /**
-   * @dataProvider testImposeAssetNameDataProvider
+   * @dataProvider imposeAssetNameDataProvider
    * @group imposeAsset
    */
   public function testImposeAssetName(...$providedData) {
@@ -25,13 +25,14 @@ class ImposeAssetNameTest extends TestCase
     $this->assertEquals($expected, $input['target']);
   }
 
-  public function testImposeAssetNameDataProvider() {
+  public function imposeAssetNameDataProvider() {
+    $usageProvider = new UsageProvider();
     return [
       'impose' => [
         'input' => [
           'template' => new Asset([
             'name' => 'Template Asset',
-            'usages' => [UsageProvider::buildUsage(ProductCategory::MEETING)]
+            'usages' => [$usageProvider->buildUsage(ProductCategory::MEETING)]
           ]),
           'target' => new Asset(),
         ],
@@ -43,7 +44,7 @@ class ImposeAssetNameTest extends TestCase
         'input' => [
           'template' => new Asset([
             'name' => 'Template Asset',
-            'usages' => [UsageProvider::buildUsage(ProductCategory::MEETING)]
+            'usages' => [$usageProvider->buildUsage(ProductCategory::MEETING)]
           ]),
           'target' => new Asset([
             'name' => 'Target Asset'
