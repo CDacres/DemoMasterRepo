@@ -495,7 +495,7 @@ type CalculatedAsset {
 }
 
 input CalculatedAssetsArgs {
-  humanRef: Ref
+  humanRefs: [Ref!]!
 }
 
 enum ProductCategory {

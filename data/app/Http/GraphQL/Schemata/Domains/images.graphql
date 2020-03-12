@@ -1,5 +1,5 @@
 extend type Mutation  @middleware(checks: ["is_logged_in_graphql"]) {
-  uploadImage(input: UploadImageInput!): MutationResult
+  uploadImage(input: UploadImageInput!): MutationResult!
 }
 
 input UploadImageInput {

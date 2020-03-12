@@ -14,9 +14,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class CalculatedAssetsArgs extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>.zipcube.Id humanRef = 1;</code>
+     * Generated from protobuf field <code>repeated .zipcube.Id humanRefs = 1;</code>
      */
-    private $humanRef = null;
+    private $humanRefs;
 
     /**
      * Constructor.
@@ -24,7 +24,7 @@ class CalculatedAssetsArgs extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \App\Types\Id $humanRef
+     *     @type \App\Types\Id[]|\Google\Protobuf\Internal\RepeatedField $humanRefs
      * }
      */
     public function __construct($data = NULL) {
@@ -33,26 +33,25 @@ class CalculatedAssetsArgs extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.zipcube.Id humanRef = 1;</code>
-     * @return \App\Types\Id
+     * Generated from protobuf field <code>repeated .zipcube.Id humanRefs = 1;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
      */
-    public function getHumanRef()
+    public function getHumanRefs()
     {
-        return $this->humanRef;
+        return $this->humanRefs;
     }
 
     /**
-     * Generated from protobuf field <code>.zipcube.Id humanRef = 1;</code>
-     * @param \App\Types\Id $var
+     * Generated from protobuf field <code>repeated .zipcube.Id humanRefs = 1;</code>
+     * @param \App\Types\Id[]|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
-    public function setHumanRef($var)
+    public function setHumanRefs($var)
     {
-        GPBUtil::checkMessage($var, \App\Types\Id::class);
-        $this->humanRef = $var;
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \App\Types\Id::class);
+        $this->humanRefs = $arr;
 
         return $this;
     }
 
 }
-

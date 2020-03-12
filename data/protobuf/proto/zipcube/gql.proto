@@ -64,7 +64,7 @@ message ListingsVenuesArgs {
 }
 
 message CalculatedAssetsArgs {
-  Id humanRef = 1;
+  repeated Id humanRefs = 1;
 }
 
 message PatchAddressInput {

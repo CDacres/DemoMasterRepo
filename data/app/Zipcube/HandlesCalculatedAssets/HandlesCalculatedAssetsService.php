@@ -13,6 +13,7 @@ use App\Types\Asset;
 use App\Types\CAsset;
 use App\Types\CId;
 use App\Types\Id;
+use App\Types\ImposingAssets;
 
 class HandlesCalculatedAssetsService extends DomainCommand {
 
@@ -21,8 +22,7 @@ class HandlesCalculatedAssetsService extends DomainCommand {
     $assets = $this->assetsByCId($ids);
     if ($assets->getCollection()->offsetExists(0)) {
       $asset = $assets->getCollection()[0];
-      $assetFamily = $this->buildAssetFamilyCollection($asset);
-      $uncalculatedAsset = $this->handleAssetInheritence($assetFamily);
+      $uncalculatedAsset = $this->inheritFromAssetFamily($asset);
       $calculatedAsset = $this->calculateAsset($uncalculatedAsset);
       return new CAsset(['collection' => [$calculatedAsset]]);
     }
@@ -33,8 +33,8 @@ class HandlesCalculatedAssetsService extends DomainCommand {
     return $this->querySiblingMethod(HandlesAssetsService::class, $ids, 'assetsByCId');
   }
 
-  private function calculateAsset(Asset $assets): Asset {
-    return $this->querySiblingMethod(CalculatesAssetsService::class, $assets, 'calculatedAssetFromAsset');
+  private function calculateAsset(Asset $asset): Asset {
+    return $this->querySiblingMethod(CalculatesAssetsService::class, $asset, 'calculatedAssetFromAsset');
   }
 
   private function getParentAsset(Asset $childAsset): ?Asset {
@@ -50,30 +50,52 @@ class HandlesCalculatedAssetsService extends DomainCommand {
     return null;
   }
 
-  private function buildAssetFamilyCollection(Asset $asset): CAsset {
-    $assetArray = [$asset];
-    $checkAsset = $asset;
-    while (!is_null($checkAsset)) {
-      $parentAsset = $this->getParentAsset($checkAsset);
-      if (!is_null($parentAsset)) {
-        array_push($assetArray, $parentAsset);
-      }
-      $checkAsset = $parentAsset;
-    }
-    return new CAsset(['collection' => $assetArray]);
+  private function inheritFromAssetFamily(Asset $asset): Asset {
+    $assetFamilyArray = $this->getAssetFamily([$asset]);
+    $inheritedAsset = $this->imposeAssetFamily($assetFamilyArray);
+    return $inheritedAsset;
   }
 
-  private function handleAssetInheritence(CAsset $assetFamily): Asset {
-    $assetFamilyArr = array_reverse(collect($assetFamily->getCollection())->all());
-    $parentAsset = $assetFamilyArr[0];
-    for ($i=1; $i < count($assetFamilyArr); $i++) {
-      $parentAsset = $this->inheritFromParentAsset($assetFamilyArr[$i], $parentAsset);
+  private function getAssetFamily(array $assets): array {
+    $parentAsset = $this->getParentAsset(end($assets));
+    if (is_null($parentAsset)) {
+      return $assets;
     }
-    return $parentAsset;
+    array_push($assets, $parentAsset);
+    return $this->getAssetFamily($assets);
   }
 
-  private function inheritFromParentAsset(Asset $asset, Asset $parentAsset): Asset {
-    $assets = new CAsset(['collection' => [$asset, $parentAsset]]);
-    return $this->querySiblingMethod(CalculatesAssetsService::class, $assets, 'inheritFromParentAsset');
+  private function imposeAssetFamily(array $assetFamily) {
+    if (count($assetFamily) === 1) {
+      return end($assetFamily);
+    }
+    $parentAsset = array_pop($assetFamily);
+    $childAsset = array_pop($assetFamily);
+    $cAsset = $this->imposeParentAsset([$childAsset], $parentAsset);
+    array_push($assetFamily, $cAsset->getCollection()[0]);
+    return $this->imposeAssetFamily($assetFamily);
+  }
+
+  private function imposeParentAsset(array $assets, Asset $parentAsset): CAsset {
+    $imposingAssets = new ImposingAssets([
+      'template' => $parentAsset,
+      'targets' => $assets
+    ]);
+    return $this->querySiblingMethod(CalculatesAssetsService::class, $imposingAssets, 'imposeAssetOnAssets');
+  }
+
+  public function getImposedChildAssets(Asset $asset): CAsset {
+    $nesting = $this->querySiblingMethod(HandlesAssetsService::class, $asset->getId(), 'serveAssetNesting');
+    if (!is_null($nesting->getLayouts()) && $nesting->getLayouts()->offsetExists(0)) {
+      $childAssets = collect($nesting->getLayouts()[0]->getChildren())->map(function (Id $id) {
+        $cId = new CId(['collection' => [$id]]);
+        $assets = $this->assetsByCId($cId);
+        if (!is_null($assets->getCollection()) && $assets->getCollection()->offsetExists(0)) {
+          return $assets->getCollection()[0];
+        }
+      })->all();
+      return $this->imposeParentAsset($childAssets, $asset);
+    }
+    return new CAsset();
   }
 }
